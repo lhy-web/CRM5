@@ -15,7 +15,7 @@
         <result name="getDirctionary">AddCustomerInfo.jsp</result>
     </action>
     <action name="addCustomerInfo" class="addCustomerInfo">
-        <result name="addCustomer">index.jsp</result>
+        <result name="addCustomer">AddCustomerInfo.jsp</result>
     </action>
 </package>
 
