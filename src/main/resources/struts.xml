@@ -8,6 +8,9 @@
     <action name="Test" class="TestAction">
         <result name="success">index.jsp</result>
     </action>
+    <action name="findAll" class="FindAllAction" method="findAll">
+        <result name="findAll">index.jsp</result>
+    </action>
 </package>
 
 </struts>

@@ -8,8 +8,8 @@
             <column name="DataId" />
             <generator class="identity"/>
         </id>
-        <many-to-one name="dictionaryType" class="com.domain.DictionaryType" fetch="select">
-            <column name="DataTypeId" />
+        <many-to-one name="dictionaryType" class="com.domain.DictionaryType" fetch="select" lazy="false">
+            <column name="dataTypeId" />
         </many-to-one>
         <property name="dataInformationName" type="java.lang.String">
             <column name="DataInformationName" />

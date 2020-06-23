@@ -37,13 +37,22 @@
     <bean name="TestDao" class="com.dao.TestDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <bean name="CustomerDao" class="com.dao.CustomerInfoDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 <!--    配置service-->
     <bean name="TestService" class="com.service.TestServiceImpl">
         <property name="dao" ref="TestDao"/>
     </bean>
+    <bean name="CustomerService" class="com.service.CustomerInfoServiceImpl">
+        <property name="dao" ref="CustomerDao"/>
+    </bean>
 <!--    配置Action-->
     <bean name="TestAction" class="com.action.TestAction">
         <property name="service" ref="TestService"/>
+    </bean>
+    <bean name="FindAllAction" class="com.action.FindAllCustomerInfoAction">
+        <property name="service" ref="CustomerService"/>
     </bean>
     <!--配置事务核心管理器-->
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">

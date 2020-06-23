@@ -13,8 +13,10 @@
 </head>
 <body>
 <c:forEach items="${list}" var="a">
-    ${a.id}
-    ${a.name}
+    ${a.customerId}
+    ${a.customerName}
+    ${a.customerLevel.levelName}
+    ${a.dictionaryTypeInfoByCustomerSource.dataInformationName}
 </c:forEach>
 </body>
 </html>

@@ -38,19 +38,19 @@
         <property name="noteInformation" type="java.lang.String">
             <column name="noteInformation" />
         </property>
-        <many-to-one name="customerLevel" class="com.domain.CustomerLevel" lazy="false">
+        <many-to-one name="customerLevel" class="com.domain.CustomerLevel" lazy="false" fetch="select">
             <column name="customerLevel"/>
         </many-to-one>
-        <many-to-one name="dictionaryTypeInfoByCustomerProperties" class="com.domain.DictionaryTypeInfo" lazy="false">
+        <many-to-one name="dictionaryTypeInfoByCustomerProperties" class="com.domain.DictionaryTypeInfo" lazy="false" fetch="select">
             <column name="customerProperties"/>
         </many-to-one>
-        <many-to-one name="dictionaryTypeInfoByCustomerSource" class="com.domain.DictionaryTypeInfo" lazy="false">
+        <many-to-one name="dictionaryTypeInfoByCustomerSource" class="com.domain.DictionaryTypeInfo" lazy="false" fetch="select">
             <column name="customerSource"/>
         </many-to-one>
-        <many-to-one name="dictionaryTypeInfoByCustomerType" class="com.domain.DictionaryTypeInfo" lazy="false">
+        <many-to-one name="dictionaryTypeInfoByCustomerType" class="com.domain.DictionaryTypeInfo" lazy="false" fetch="select">
             <column name="customerType"/>
         </many-to-one>
-        <many-to-one name="dictionaryTypeInfoByOpenBank" class="com.domain.DictionaryTypeInfo" lazy="false">
+        <many-to-one name="dictionaryTypeInfoByOpenBank" class="com.domain.DictionaryTypeInfo" lazy="false" fetch="select">
             <column name="openBank"/>
         </many-to-one>
     </class>

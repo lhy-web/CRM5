@@ -1,21 +1,22 @@
 package com.domain;
 
-import javax.persistence.criteria.CriteriaBuilder;
+
 import java.util.HashSet;
 import java.util.Set;
 
 public class DictionaryType {
     private Integer dataTypeId;
     private String dataTypeName;
-    private Set dictionaryTypeInfos = new HashSet(0);
 
-    public Set getDictionaryTypeInfos() {
+    public Set<DictionaryTypeInfo> getDictionaryTypeInfos() {
         return dictionaryTypeInfos;
     }
 
-    public void setDictionaryTypeInfos(Set dictionaryTypeInfos) {
+    public void setDictionaryTypeInfos(Set<DictionaryTypeInfo> dictionaryTypeInfos) {
         this.dictionaryTypeInfos = dictionaryTypeInfos;
     }
+
+    private Set<DictionaryTypeInfo> dictionaryTypeInfos;
 
     public DictionaryType() {
     }

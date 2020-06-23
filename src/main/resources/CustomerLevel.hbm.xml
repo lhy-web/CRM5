@@ -9,7 +9,7 @@
             <generator class="identity"/>
         </id>
         <property name="business" type="java.lang.Double">
-            <column name="business" precision="8" />
+            <column name="business"  />
         </property>
         <property name="levelName" type="java.lang.String">
             <column name="levelName" />

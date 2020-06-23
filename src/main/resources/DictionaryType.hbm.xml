@@ -13,7 +13,7 @@
         </property>
 
 
-        <set name="dictionaryTypeInfos" inverse="true">
+        <set name="dictionaryTypeInfos" inverse="true" lazy="false">
             <key>
                 <column name="DateTypeId" />
             </key>
