@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.domain.DictionaryTypeInfo" table="dictionarytype_info" >
+        <id name="dataId" type="java.lang.Integer">
+            <column name="DataId" />
+            <generator class="identity"/>
+        </id>
+        <many-to-one name="dictionaryType" class="com.domain.DictionaryType" fetch="select">
+            <column name="DataTypeId" />
+        </many-to-one>
+        <property name="dataInformationName" type="java.lang.String">
+            <column name="DataInformationName" />
+        </property>
+
+
+
+    </class>
+</hibernate-mapping>
