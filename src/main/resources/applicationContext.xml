@@ -54,6 +54,12 @@
     <bean name="FindAllAction" class="com.action.FindAllCustomerInfoAction">
         <property name="service" ref="CustomerService"/>
     </bean>
+    <bean name="getDirctionary" class="com.action.GetDirctionaryTypeInfoAction">
+        <property name="service" ref="CustomerService"/>
+    </bean>
+    <bean name="addCustomerInfo" class="com.action.AddCustomerInfoAction">
+        <property name="service" ref="CustomerService"/>
+    </bean>
     <!--配置事务核心管理器-->
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>

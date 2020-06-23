@@ -12,11 +12,35 @@
     <title>Title</title>
 </head>
 <body>
-<c:forEach items="${list}" var="a">
-    ${a.customerId}
-    ${a.customerName}
-    ${a.customerLevel.levelName}
-    ${a.dictionaryTypeInfoByCustomerSource.dataInformationName}
-</c:forEach>
+<table width="100%" height="48" border="1" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolordark="#aaaaaa"  bordercolorlight="#FFFFFF">
+    <tr bgcolor="#eeeeee" style="padding:5px;">
+        <td align="center"> <input type="checkbox" onclick="quanxuan();" id="selectAll" ></td>
+        <td align="center"> 编号</td>
+        <td align="center"> 客户名称</td>
+        <td align="center"> 客户性质</td>
+        <td align="center"> 客户类型</td>
+        <td align="center"> 客户级别</td>
+        <td align="center"> 公司网址</td>
+        <td align="center"> 公司电话</td>
+        <td align="center"> 登记人</td>
+
+    </tr>
+    <c:forEach items="${list}" var="CustomerInfo">
+        <tr  style="padding:5px;font-size: 12px;">
+            <td align="center"><input type="checkbox" name="checkboxDelete" value="${CustomerInfo.customerId }"> </td>
+            <td align="center"> ${CustomerInfo.customerId }</td>
+            <td align="center"><a href="javascript:toSup('${CustomerInfo.customerName}','${CustomerInfo.customerId}');">${CustomerInfo.customerName }</a> </td>
+            <td align="center"> ${CustomerInfo.dictionaryTypeInfoByCustomerProperties.dataInformationName }</td>
+            <td align="center"> ${CustomerInfo.dictionaryTypeInfoByCustomerType.dataInformationName }</td>
+            <td align="center"> ${CustomerInfo.customerLevel.levelName }</td>
+            <td align="center"> ${CustomerInfo.customerCompanyWebsize }</td>
+            <td align="center"> ${CustomerInfo.customerCompanyPhone }</td>
+            <td align="center"> ${CustomerInfo.register }</td>
+
+        </tr>
+    </c:forEach>
+
+
+</table>
 </body>
 </html>

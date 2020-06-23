@@ -11,6 +11,12 @@
     <action name="findAll" class="FindAllAction" method="findAll">
         <result name="findAll">index.jsp</result>
     </action>
+    <action name="GetDictionary" class="getDirctionary" method="getDirctionary">
+        <result name="getDirctionary">AddCustomerInfo.jsp</result>
+    </action>
+    <action name="addCustomerInfo" class="addCustomerInfo">
+        <result name="addCustomer">index.jsp</result>
+    </action>
 </package>
 
 </struts>
