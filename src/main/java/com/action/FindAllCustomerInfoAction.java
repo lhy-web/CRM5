@@ -5,6 +5,8 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.CustomerInfoService;
 import com.utils.PageBean;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 /*
@@ -13,6 +15,25 @@ import java.util.List;
 public class FindAllCustomerInfoAction extends ActionSupport {
     private CustomerInfoService service;
     private String type;
+    private Integer currentPage;
+
+    public Integer getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(Integer currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    private Integer pageSize;
 
     public String getKey() {
         return key;
@@ -42,41 +63,96 @@ public class FindAllCustomerInfoAction extends ActionSupport {
 
 
     public String findAll() throws Exception {
+        //离线查询对象
+        DetachedCriteria dc=DetachedCriteria.forClass(Customerinfo.class);
+        //前台传入的条件不为空时封装查询对象
+
         if(key!=null) {
             if (type.equals("customerName")) {
-                List<Customerinfo> list = service.findByCustomerName(key);
-                ActionContext.getContext().put("list",list);
+                dc.add(Restrictions.like("customerName","%"+key+"%"));
+
+                PageBean pb=service.getPageBean(dc,currentPage,pageSize);
+                ActionContext.getContext().put("list",pb);
+
                 return "findAll";
-            } else if (type.equals("customerAddress")) {
-                List<Customerinfo> list = service.findBycustomerAddress(key);
-                ActionContext.getContext().put("list",list); return "findAll";
-            } else if (type.equals("customerProvinces")) {
-                List<Customerinfo> list = service.findBycustomerProvinces(key);
-                ActionContext.getContext().put("list",list); return "findAll";
-            } else if (type.equals("customerCity")) {
-                List<Customerinfo> list = service.findBycustomerCity(key);
-                ActionContext.getContext().put("list",list); return "findAll";
-            } else if (type.equals("customerCode")) {
-                List<Customerinfo> list = service.findBycustomerCode(key);
-                ActionContext.getContext().put("list",list); return "findAll";
-            } else if (type.equals("bankAccount")) {
-                List<Customerinfo> list = service.findBybankAccount(key);
-                ActionContext.getContext().put("list",list); return "findAll";
-            } else if (type.equals("customerCompanyWebsize")) {
-                List<Customerinfo> list = service.findBycustomerCompanyWebsize(key);
-                ActionContext.getContext().put("list",list); return "findAll";
-            } else if (type.equals("customerCompanyPhone")) {
-                List<Customerinfo> list = service.findBycustomerCompanyPhone(key);
-                ActionContext.getContext().put("list",list); return "findAll";
-            } else if (type == "noteInformation") {
-                List<Customerinfo> list = service.findBynoteInformation(key);
-                ActionContext.getContext().put("list",list);
+
+            }
+            if (type.equals("customerAddress")) {
+                dc.add(Restrictions.like("customerAddress","%"+key+"%"));
+
+                PageBean pb=service.getPageBean(dc,currentPage,pageSize);
+                ActionContext.getContext().put("list",pb);
+
                 return "findAll";
+
+            }
+            if (type.equals("customerProvinces")) {
+                dc.add(Restrictions.like("customerProvinces","%"+key+"%"));
+
+                PageBean pb=service.getPageBean(dc,currentPage,pageSize);
+                ActionContext.getContext().put("list",pb);
+
+                return "findAll";
+
+            }if (type.equals("customerCity")) {
+                dc.add(Restrictions.like("customerCity","%"+key+"%"));
+
+                PageBean pb=service.getPageBean(dc,currentPage,pageSize);
+                ActionContext.getContext().put("list",pb);
+
+                return "findAll";
+
+            }
+            if (type.equals("customerCode")) {
+                dc.add(Restrictions.like("customerCode","%"+key+"%"));
+
+                PageBean pb=service.getPageBean(dc,currentPage,pageSize);
+                ActionContext.getContext().put("list",pb);
+
+                return "findAll";
+
+            }
+            if (type.equals("bankAccount")) {
+                dc.add(Restrictions.like("bankAccount","%"+key+"%"));
+
+                PageBean pb=service.getPageBean(dc,currentPage,pageSize);
+                ActionContext.getContext().put("list",pb);
+
+                return "findAll";
+
+            }
+            if (type.equals("customerCompanyWebsize")) {
+                dc.add(Restrictions.like("customerCompanyWebsize","%"+key+"%"));
+
+                PageBean pb=service.getPageBean(dc,currentPage,pageSize);
+                ActionContext.getContext().put("list",pb);
+
+                return "findAll";
+
+            }
+            if (type.equals("customerCompanyPhone")) {
+                dc.add(Restrictions.like("customerCompanyPhone","%"+key+"%"));
+
+                PageBean pb=service.getPageBean(dc,currentPage,pageSize);
+                ActionContext.getContext().put("list",pb);
+
+                return "findAll";
+
+            }
+            if (type.equals("noteInformation")) {
+                dc.add(Restrictions.like("noteInformation","%"+key+"%"));
+
+                PageBean pb=service.getPageBean(dc,currentPage,pageSize);
+                ActionContext.getContext().put("list",pb);
+
+                return "findAll";
+
             }
         }else {
-        List<Customerinfo> all = service.findAll();
-        ActionContext.getContext().put("list",all);}
-        return "findAll";
+            PageBean pb=service.getPageBean(dc,currentPage,pageSize);
+            ActionContext.getContext().put("list",pb);}
+
+             return "findAll";
 
     }
 }

@@ -4,6 +4,7 @@ import com.domain.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
@@ -132,84 +133,20 @@ public class CustomerInfoDaoImpl extends HibernateDaoSupport implements Customer
         }
     }
 
-    public List<Customerinfo> findByCustomerName(String type) {
-        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        String hql="from Customerinfo where customerName like:name";
-        Query query = session.createQuery(hql);
-        query.setParameter("name","%" + type + "%");
-        List<Customerinfo> list = query.list();
-        return list;
+
+//条件分页获取总条数
+    public Integer getTotalCount(DetachedCriteria dc) {
+        dc.setProjection(Projections.rowCount());
+        List list= getHibernateTemplate().findByCriteria(dc);
+        dc.setProjection(null);
+        if(list!=null&&list.size()>0){
+            Long a= (Long) list.get(0);
+            return  a.intValue();
+        }else
+            return 0;
     }
 
-    public List<Customerinfo> findBycustomerAddress(String type) {
-        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        String hql="from Customerinfo where customerAddress like:name";
-        Query query = session.createQuery(hql);
-        query.setParameter("name","%" + type + "%");
-        List<Customerinfo> list = query.list();
-        return list;
-    }
-
-    public List<Customerinfo> findBycustomerProvinces(String type) {
-        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        String hql="from Customerinfo where customerProvinces like:name";
-        Query query = session.createQuery(hql);
-        query.setParameter("name","%" + type + "%");
-        List<Customerinfo> list = query.list();
-        return list;
-    }
-
-    public List<Customerinfo> findBycustomerCity(String type) {
-        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        String hql="from Customerinfo where customerCity like:name";
-        Query query = session.createQuery(hql);
-        query.setParameter("name","%" + type + "%");
-        List<Customerinfo> list = query.list();
-        return list;
-    }
-
-    public List<Customerinfo> findBycustomerCode(String type) {
-        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        String hql="from Customerinfo where customerCode like:name";
-        Query query = session.createQuery(hql);
-        query.setParameter("name","%" + type + "%");
-        List<Customerinfo> list = query.list();
-        return list;
-    }
-
-    public List<Customerinfo> findBybankAccount(String type) {
-        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        String hql="from Customerinfo where bankAccount like:name";
-        Query query = session.createQuery(hql);
-        query.setParameter("name","%" + type + "%");
-        List<Customerinfo> list = query.list();
-        return list;
-    }
-
-    public List<Customerinfo> findBycustomerCompanyWebsize(String type) {
-        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        String hql="from Customerinfo where customerCompanyWebsize like:name";
-        Query query = session.createQuery(hql);
-        query.setParameter("name","%" + type + "%");
-        List<Customerinfo> list = query.list();
-        return list;
-    }
-
-    public List<Customerinfo> findBycustomerCompanyPhone(String type) {
-        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        String hql="from Customerinfo where customerCompanyPhone like:name";
-        Query query = session.createQuery(hql);
-        query.setParameter("name","%" + type + "%");
-        List<Customerinfo> list = query.list();
-        return list;
-    }
-
-    public List<Customerinfo> findBynoteInformation(String type) {
-        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        String hql="from Customerinfo where noteInformation like:name";
-        Query query = session.createQuery(hql);
-        query.setParameter("name","%" + type + "%");
-        List<Customerinfo> list = query.list();
-        return list;
+    public List<Customerinfo> getList(DetachedCriteria dc, Integer first, Integer pageSize) {
+        return (List<Customerinfo>) getHibernateTemplate().findByCriteria(dc,first, pageSize);
     }
 }

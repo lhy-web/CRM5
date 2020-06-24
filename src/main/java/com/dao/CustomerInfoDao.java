@@ -3,6 +3,7 @@ package com.dao;
 import com.domain.CustomerLevel;
 import com.domain.Customerinfo;
 import com.domain.DictionaryTypeInfo;
+import org.hibernate.criterion.DetachedCriteria;
 
 import java.util.List;
 
@@ -30,21 +31,8 @@ public interface CustomerInfoDao {
 //删除客户信息
     Boolean deleteCustomer(Integer customerInfoId);
 
-    List<Customerinfo> findByCustomerName(String type);
 
-    List<Customerinfo> findBycustomerAddress(String type);
+    Integer getTotalCount(DetachedCriteria dc);
 
-    List<Customerinfo> findBycustomerProvinces(String type);
-
-    List<Customerinfo> findBycustomerCity(String type);
-
-    List<Customerinfo> findBycustomerCode(String type);
-
-    List<Customerinfo> findBybankAccount(String type);
-
-    List<Customerinfo> findBycustomerCompanyWebsize(String type);
-
-    List<Customerinfo> findBycustomerCompanyPhone(String type);
-
-    List<Customerinfo> findBynoteInformation(String type);
+    List<Customerinfo> getList(DetachedCriteria dc, Integer first, Integer pageSize);
 }

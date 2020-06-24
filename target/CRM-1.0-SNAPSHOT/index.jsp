@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: ljx
@@ -17,6 +18,7 @@
     <tr>
         <td colspan="2" width="100%" align="center">
             请输入查询条件：
+
             <select name="type">
                 <option value="customerName" ${customerName }> 客户名称</option>
                 <option value="customerAddress" ${customerAddress }>客户地址</option>
@@ -54,7 +56,7 @@
 
     </tr>
     <form action="manyDelete" method="post">
-    <c:forEach items="${list}" var="CustomerInfo">
+    <c:forEach items="${list.list}" var="CustomerInfo">
         <tr  style="padding:5px;font-size: 12px;">
 
             <td align="center"><input type="checkbox" name="checkboxDelete" value="${CustomerInfo.customerId }"> </td>
@@ -71,7 +73,24 @@
             <td align="center"> <a href="${pageContext.request.contextPath}/delete?CustomerInfoId=${CustomerInfo.customerId}" >删除</a></td>
         </tr>
     </c:forEach>
+        <tr style="padding:5px;font-size: 12px;">
+            <td colspan="12" align="center">
 
+
+                    <a href="findAll?currentPage=1">首页</a>
+                    <a href="findAll?currentPage=${list.currentPage-1 }">上一页</a>
+
+
+
+
+                    <a href="findAll?currentPage=${list.currentPage+1 }">下一页</a>
+                    <a href="findAll?currentPage=${list.totalPage }">尾页</a>
+
+
+
+                当前第${list.currentPage}页| 共${list.totalPage}页 | 共${list.totalCount}条记录。
+            </td>
+        </tr>
 
 </table>
 <input type="submit" value="批量删除">

@@ -4,6 +4,8 @@ import com.dao.CustomerInfoDao;
 import com.domain.CustomerLevel;
 import com.domain.Customerinfo;
 import com.domain.DictionaryTypeInfo;
+import com.utils.PageBean;
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -69,41 +71,19 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
     public Boolean deleteCustomerInfo(Integer customerInfoId) {
        return dao.deleteCustomer(customerInfoId);
     }
+
     @Transactional
-    public List<Customerinfo> findByCustomerName(String type) {
-        return dao.findByCustomerName(type);
-    }
-    @Transactional
-    public List<Customerinfo> findBycustomerAddress(String type) {
-        return dao.findBycustomerAddress(type);
-    }
-    @Transactional
-    public List<Customerinfo> findBycustomerProvinces(String type) {
-        return dao.findBycustomerProvinces(type);
-    }
-    @Transactional
-    public List<Customerinfo> findBycustomerCity(String type) {
-        return dao.findBycustomerCity(type);
-    }
-    @Transactional
-    public List<Customerinfo> findBycustomerCode(String type) {
-        return dao.findBycustomerCode(type);
-    }
-    @Transactional
-    public List<Customerinfo> findBybankAccount(String type) {
-        return dao.findBybankAccount(type);
-    }
-    @Transactional
-    public List<Customerinfo> findBycustomerCompanyWebsize(String type) {
-        return dao.findBycustomerCompanyWebsize(type);
-    }
-    @Transactional
-    public List<Customerinfo> findBycustomerCompanyPhone(String type) {
-        return dao.findBycustomerCompanyPhone(type);
-    }
-    @Transactional
-    public List<Customerinfo> findBynoteInformation(String type) {
-        return dao.findBynoteInformation(type);
+    public PageBean getPageBean(DetachedCriteria dc, Integer currentPage, Integer pageSize) {
+        //根据查询条件获取总记录数
+        Integer totalCount=dao.getTotalCount(dc);
+        //创建pageBean对象
+        PageBean pageBean=new PageBean(currentPage,totalCount,pageSize);
+        //获取每页列表
+        List<Customerinfo> list=dao.getList(dc,pageBean.getFirst(),pageBean.getPageSize());
+        pageBean.setList(list);
+
+
+        return pageBean;
     }
 
 }
