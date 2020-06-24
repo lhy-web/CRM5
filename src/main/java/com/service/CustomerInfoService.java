@@ -26,4 +26,6 @@ public interface CustomerInfoService {
     Customerinfo findCustomerInfoDetail(Integer customerInfoId);
     //修改客户信息
     Boolean updateCustomerInfo(Customerinfo customerInfo);
+//    删除客户信息
+    Boolean deleteCustomerInfo(Integer customerInfoId);
 }

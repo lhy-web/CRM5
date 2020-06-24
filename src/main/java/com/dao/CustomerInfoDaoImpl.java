@@ -120,4 +120,15 @@ public class CustomerInfoDaoImpl extends HibernateDaoSupport implements Customer
 
 
     }
+
+    public Boolean deleteCustomer(Integer customerInfoId) {
+        try {
+            Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+            Customerinfo customerinfo = session.get(Customerinfo.class, customerInfoId);
+            session.delete(customerinfo);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
 }

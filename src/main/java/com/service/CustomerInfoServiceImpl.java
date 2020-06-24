@@ -65,5 +65,9 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
     public Boolean updateCustomerInfo(Customerinfo customerInfo) {
         return dao.updateCustomer(customerInfo);
     }
+    @Transactional
+    public Boolean deleteCustomerInfo(Integer customerInfoId) {
+       return dao.deleteCustomer(customerInfoId);
+    }
 
 }

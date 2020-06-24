@@ -27,4 +27,6 @@ public interface CustomerInfoDao {
     Customerinfo findById(Integer customerInfoId);
     //修改客户信息
     Boolean updateCustomer(Customerinfo customerInfo);
+//删除客户信息
+    Boolean deleteCustomer(Integer customerInfoId);
 }

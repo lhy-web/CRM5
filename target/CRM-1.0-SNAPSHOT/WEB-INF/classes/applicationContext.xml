@@ -69,6 +69,12 @@
     <bean name="updateCustomer" class="com.action.updateCustomerAction">
         <property name="service" ref="CustomerService"/>
     </bean>
+    <bean name="delete" class="com.action.deleteCustomerInfoAction">
+        <property name="service" ref="CustomerService"/>
+    </bean>
+    <bean name="manyDelete" class="com.action.ManyDeleteCustomerAction">
+        <property name="service" ref="CustomerService"/>
+    </bean>
     <!--配置事务核心管理器-->
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
