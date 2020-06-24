@@ -29,4 +29,22 @@ public interface CustomerInfoDao {
     Boolean updateCustomer(Customerinfo customerInfo);
 //删除客户信息
     Boolean deleteCustomer(Integer customerInfoId);
+
+    List<Customerinfo> findByCustomerName(String type);
+
+    List<Customerinfo> findBycustomerAddress(String type);
+
+    List<Customerinfo> findBycustomerProvinces(String type);
+
+    List<Customerinfo> findBycustomerCity(String type);
+
+    List<Customerinfo> findBycustomerCode(String type);
+
+    List<Customerinfo> findBybankAccount(String type);
+
+    List<Customerinfo> findBycustomerCompanyWebsize(String type);
+
+    List<Customerinfo> findBycustomerCompanyPhone(String type);
+
+    List<Customerinfo> findBynoteInformation(String type);
 }

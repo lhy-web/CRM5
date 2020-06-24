@@ -69,5 +69,41 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
     public Boolean deleteCustomerInfo(Integer customerInfoId) {
        return dao.deleteCustomer(customerInfoId);
     }
+    @Transactional
+    public List<Customerinfo> findByCustomerName(String type) {
+        return dao.findByCustomerName(type);
+    }
+    @Transactional
+    public List<Customerinfo> findBycustomerAddress(String type) {
+        return dao.findBycustomerAddress(type);
+    }
+    @Transactional
+    public List<Customerinfo> findBycustomerProvinces(String type) {
+        return dao.findBycustomerProvinces(type);
+    }
+    @Transactional
+    public List<Customerinfo> findBycustomerCity(String type) {
+        return dao.findBycustomerCity(type);
+    }
+    @Transactional
+    public List<Customerinfo> findBycustomerCode(String type) {
+        return dao.findBycustomerCode(type);
+    }
+    @Transactional
+    public List<Customerinfo> findBybankAccount(String type) {
+        return dao.findBybankAccount(type);
+    }
+    @Transactional
+    public List<Customerinfo> findBycustomerCompanyWebsize(String type) {
+        return dao.findBycustomerCompanyWebsize(type);
+    }
+    @Transactional
+    public List<Customerinfo> findBycustomerCompanyPhone(String type) {
+        return dao.findBycustomerCompanyPhone(type);
+    }
+    @Transactional
+    public List<Customerinfo> findBynoteInformation(String type) {
+        return dao.findBynoteInformation(type);
+    }
 
 }

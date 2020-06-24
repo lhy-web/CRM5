@@ -131,4 +131,85 @@ public class CustomerInfoDaoImpl extends HibernateDaoSupport implements Customer
             return false;
         }
     }
+
+    public List<Customerinfo> findByCustomerName(String type) {
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String hql="from Customerinfo where customerName like:name";
+        Query query = session.createQuery(hql);
+        query.setParameter("name","%" + type + "%");
+        List<Customerinfo> list = query.list();
+        return list;
+    }
+
+    public List<Customerinfo> findBycustomerAddress(String type) {
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String hql="from Customerinfo where customerAddress like:name";
+        Query query = session.createQuery(hql);
+        query.setParameter("name","%" + type + "%");
+        List<Customerinfo> list = query.list();
+        return list;
+    }
+
+    public List<Customerinfo> findBycustomerProvinces(String type) {
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String hql="from Customerinfo where customerProvinces like:name";
+        Query query = session.createQuery(hql);
+        query.setParameter("name","%" + type + "%");
+        List<Customerinfo> list = query.list();
+        return list;
+    }
+
+    public List<Customerinfo> findBycustomerCity(String type) {
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String hql="from Customerinfo where customerCity like:name";
+        Query query = session.createQuery(hql);
+        query.setParameter("name","%" + type + "%");
+        List<Customerinfo> list = query.list();
+        return list;
+    }
+
+    public List<Customerinfo> findBycustomerCode(String type) {
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String hql="from Customerinfo where customerCode like:name";
+        Query query = session.createQuery(hql);
+        query.setParameter("name","%" + type + "%");
+        List<Customerinfo> list = query.list();
+        return list;
+    }
+
+    public List<Customerinfo> findBybankAccount(String type) {
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String hql="from Customerinfo where bankAccount like:name";
+        Query query = session.createQuery(hql);
+        query.setParameter("name","%" + type + "%");
+        List<Customerinfo> list = query.list();
+        return list;
+    }
+
+    public List<Customerinfo> findBycustomerCompanyWebsize(String type) {
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String hql="from Customerinfo where customerCompanyWebsize like:name";
+        Query query = session.createQuery(hql);
+        query.setParameter("name","%" + type + "%");
+        List<Customerinfo> list = query.list();
+        return list;
+    }
+
+    public List<Customerinfo> findBycustomerCompanyPhone(String type) {
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String hql="from Customerinfo where customerCompanyPhone like:name";
+        Query query = session.createQuery(hql);
+        query.setParameter("name","%" + type + "%");
+        List<Customerinfo> list = query.list();
+        return list;
+    }
+
+    public List<Customerinfo> findBynoteInformation(String type) {
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String hql="from Customerinfo where noteInformation like:name";
+        Query query = session.createQuery(hql);
+        query.setParameter("name","%" + type + "%");
+        List<Customerinfo> list = query.list();
+        return list;
+    }
 }
