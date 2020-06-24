@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.domain.Customerinfo" table="customerinfo">
+        <id name="customerId" type="java.lang.Integer">
+            <column name="customerId" />
+            <generator class="identity"></generator>
+        </id>
+        <property name="customerName" type="java.lang.String">
+            <column name="customerName"  />
+        </property>
+        <property name="customerCompanyWebsize" type="java.lang.String">
+            <column name="customerCompanyWebsize" />
+        </property>
+        <property name="customerCompanyPhone" type="java.lang.String">
+            <column name="customerCompanyPhone"  />
+        </property>
+        <property name="register" type="java.lang.String">
+            <column name="register" />
+        </property>
+        <property name="customerAddress" type="java.lang.String">
+            <column name="customerAddress"/>
+        </property>
+        <property name="customerProvinces" type="java.lang.String">
+            <column name="customerProvinces"  />
+        </property>
+        <property name="customerCity" type="java.lang.String">
+            <column name="customerCity"  />
+        </property>
+        <property name="customerCode" type="java.lang.String">
+            <column name="customerCode"  />
+        </property>
+        <property name="bankAccount" type="java.lang.String">
+            <column name="bankAccount"  />
+        </property>
+        <property name="noteInformation" type="java.lang.String">
+            <column name="noteInformation" />
+        </property>
+        <many-to-one name="customerLevel" class="com.domain.CustomerLevel" lazy="false" fetch="select">
+            <column name="customerLevel"/>
+        </many-to-one>
+        <many-to-one name="dictionaryTypeInfoByCustomerProperties" class="com.domain.DictionaryTypeInfo" lazy="false" fetch="select">
+            <column name="customerProperties"/>
+        </many-to-one>
+        <many-to-one name="dictionaryTypeInfoByCustomerSource" class="com.domain.DictionaryTypeInfo" lazy="false" fetch="select">
+            <column name="customerSource"/>
+        </many-to-one>
+        <many-to-one name="dictionaryTypeInfoByCustomerType" class="com.domain.DictionaryTypeInfo" lazy="false" fetch="select">
+            <column name="customerType"/>
+        </many-to-one>
+        <many-to-one name="dictionaryTypeInfoByOpenBank" class="com.domain.DictionaryTypeInfo" lazy="false" fetch="select">
+            <column name="openBank"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

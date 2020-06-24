@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+<package name="Test" namespace="/" extends="struts-default">
+    <action name="Test" class="TestAction">
+        <result name="success">index.jsp</result>
+    </action>
+    <action name="findAll" class="FindAllAction" method="findAll">
+        <result name="findAll">index.jsp</result>
+    </action>
+    <action name="GetDictionary" class="getDirctionary" method="getDirctionary">
+        <result name="getDirctionary">AddCustomerInfo.jsp</result>
+    </action>
+    <action name="addCustomerInfo" class="addCustomerInfo">
+        <result name="addCustomer">AddCustomerInfo.jsp</result>
+    </action>
+    <action name="ViewDCI" class="ViewDetails">
+        <result name="viewDetails">showCustomerInfoDetails.jsp</result>
+    </action>
+    <action name="update" class="update">
+        <result name="update">updateCustomerInfo.jsp</result>
+    </action>
+    <action name="updateCustomer" class="updateCustomer">
+        <result name="updateCustomer">index.jsp</result>
+    </action>
+</package>
+
+</struts>

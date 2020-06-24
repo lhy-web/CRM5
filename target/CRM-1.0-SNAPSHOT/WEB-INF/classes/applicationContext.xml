@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+">
+    <context:component-scan base-package="com.*"/>
+    <bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="jdbcUrl"
+                  value="jdbc:mysql://182.92.220.204:3306/ssh?characterEncoding=utf8&amp;useSSL=true&amp;serverTimezone=UTC"/>
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="user" value="root"/>
+        <property name="password" value="hyh187"/>
+    </bean>
+    <bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+
+        <!-- 通过mappingDirLoc这个属性，可以配置一个文件夹，spring就会扫描这个文件夹下的所有映射文件 -->
+        <property name="mappingLocations" value="classpath:*.hbm.xml"/>
+
+
+    </bean>
+<!--    配置dao-->
+    <bean name="TestDao" class="com.dao.TestDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean name="CustomerDao" class="com.dao.CustomerInfoDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+<!--    配置service-->
+    <bean name="TestService" class="com.service.TestServiceImpl">
+        <property name="dao" ref="TestDao"/>
+    </bean>
+    <bean name="CustomerService" class="com.service.CustomerInfoServiceImpl">
+        <property name="dao" ref="CustomerDao"/>
+    </bean>
+<!--    配置Action-->
+    <bean name="TestAction" class="com.action.TestAction">
+        <property name="service" ref="TestService"/>
+    </bean>
+    <bean name="FindAllAction" class="com.action.FindAllCustomerInfoAction">
+        <property name="service" ref="CustomerService"/>
+    </bean>
+    <bean name="getDirctionary" class="com.action.GetDirctionaryTypeInfoAction">
+        <property name="service" ref="CustomerService"/>
+    </bean>
+    <bean name="addCustomerInfo" class="com.action.AddCustomerInfoAction">
+        <property name="service" ref="CustomerService"/>
+    </bean>
+    <bean name="ViewDetails" class="com.action.ViewDetailsCustomerInfoAction">
+        <property name="service" ref="CustomerService"/>
+    </bean>
+    <bean name="update" class="com.action.CustomerInfoUpdateAction">
+        <property name="service" ref="CustomerService"/>
+    </bean>
+    <bean name="updateCustomer" class="com.action.updateCustomerAction">
+        <property name="service" ref="CustomerService"/>
+    </bean>
+    <!--配置事务核心管理器-->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!--8.事务注解配置-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>
