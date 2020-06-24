@@ -22,4 +22,8 @@ public interface CustomerInfoService {
     boolean findCustomerName(String customerName);
     //添加客户
     void saveCustomerInfo(Customerinfo customerInfo);
+    //查看客户详细信息
+    Customerinfo findCustomerInfoDetail(Integer customerInfoId);
+    //修改客户信息
+    Boolean updateCustomerInfo(Customerinfo customerInfo);
 }

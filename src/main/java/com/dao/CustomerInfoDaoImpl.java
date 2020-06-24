@@ -78,4 +78,46 @@ public class CustomerInfoDaoImpl extends HibernateDaoSupport implements Customer
         }else
             return true;
     }
+
+    public Customerinfo findById(Integer customerInfoId) {
+        DetachedCriteria detachedCriteria=DetachedCriteria.forClass(Customerinfo.class);
+        detachedCriteria.add(Restrictions.eq("customerId",customerInfoId));
+        List<Customerinfo> list = (List<Customerinfo>) getHibernateTemplate().findByCriteria(detachedCriteria);
+     if(list.size()!=0){
+        Customerinfo c=list.get(0);
+        return c;}
+     else return null;
+
+    }
+
+    public Boolean updateCustomer(Customerinfo customerInfo) {
+        try {
+
+
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        Customerinfo c = session.get(Customerinfo.class, customerInfo.getCustomerId());
+        c.setCustomerName(customerInfo.getCustomerName());
+        c.setBankAccount(customerInfo.getBankAccount());
+        c.setCustomerAddress(customerInfo.getCustomerAddress());
+        c.setCustomerCity(customerInfo.getCustomerCity());
+        c.setCustomerCode(customerInfo.getCustomerCode());
+        c.setCustomerCompanyPhone(customerInfo.getCustomerCompanyPhone());
+        c.setCustomerCompanyWebsize(customerInfo.getCustomerCompanyWebsize());
+        c.setCustomerLevel(customerInfo.getCustomerLevel());
+        c.setDictionaryTypeInfoByCustomerProperties(customerInfo.getDictionaryTypeInfoByCustomerProperties());
+        c.setDictionaryTypeInfoByCustomerSource(customerInfo.getDictionaryTypeInfoByCustomerSource());
+        c.setDictionaryTypeInfoByCustomerType(customerInfo.getDictionaryTypeInfoByCustomerType());
+        c.setDictionaryTypeInfoByOpenBank(customerInfo.getDictionaryTypeInfoByOpenBank());
+        c.setNoteInformation(customerInfo.getNoteInformation());
+        c.setRegister(customerInfo.getRegister());
+        c.setCustomerProvinces(customerInfo.getCustomerProvinces());
+        session.update(c);
+        return true;}catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
+
+
+
+    }
 }

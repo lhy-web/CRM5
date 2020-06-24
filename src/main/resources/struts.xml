@@ -17,6 +17,15 @@
     <action name="addCustomerInfo" class="addCustomerInfo">
         <result name="addCustomer">AddCustomerInfo.jsp</result>
     </action>
+    <action name="ViewDCI" class="ViewDetails">
+        <result name="viewDetails">showCustomerInfoDetails.jsp</result>
+    </action>
+    <action name="update" class="update">
+        <result name="update">updateCustomerInfo.jsp</result>
+    </action>
+    <action name="updateCustomer" class="updateCustomer">
+        <result name="updateCustomer">index.jsp</result>
+    </action>
 </package>
 
 </struts>

@@ -57,5 +57,13 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
         }else
             System.out.println("添加失败");
     }
+    @Transactional
+    public Customerinfo findCustomerInfoDetail(Integer customerInfoId) {
+       return dao.findById(customerInfoId);
+    }
+    @Transactional
+    public Boolean updateCustomerInfo(Customerinfo customerInfo) {
+        return dao.updateCustomer(customerInfo);
+    }
 
 }

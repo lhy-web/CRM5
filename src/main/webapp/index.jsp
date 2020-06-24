@@ -23,6 +23,9 @@
         <td align="center"> 公司网址</td>
         <td align="center"> 公司电话</td>
         <td align="center"> 登记人</td>
+        <td align="center"> 查看详情</td>
+        <td align="center"> 修改</td>
+        <td align="center">删除</td>
 
     </tr>
     <c:forEach items="${list}" var="CustomerInfo">
@@ -36,7 +39,8 @@
             <td align="center"> ${CustomerInfo.customerCompanyWebsize }</td>
             <td align="center"> ${CustomerInfo.customerCompanyPhone }</td>
             <td align="center"> ${CustomerInfo.register }</td>
-
+            <td align="center"> <a href="${pageContext.request.contextPath}/ViewDCI?CustomerInfoId=${CustomerInfo.customerId}" >查看详情</a></td>
+            <td align="center"> <a href="${pageContext.request.contextPath}/update?CustomerInfoId=${CustomerInfo.customerId}" >修改</a></td>
         </tr>
     </c:forEach>
 

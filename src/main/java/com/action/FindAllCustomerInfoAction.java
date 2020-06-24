@@ -6,7 +6,9 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.service.CustomerInfoService;
 
 import java.util.List;
-
+/*
+* 查询全部信息的Action
+* */
 public class FindAllCustomerInfoAction extends ActionSupport {
     private CustomerInfoService service;
 

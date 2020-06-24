@@ -60,6 +60,15 @@
     <bean name="addCustomerInfo" class="com.action.AddCustomerInfoAction">
         <property name="service" ref="CustomerService"/>
     </bean>
+    <bean name="ViewDetails" class="com.action.ViewDetailsCustomerInfoAction">
+        <property name="service" ref="CustomerService"/>
+    </bean>
+    <bean name="update" class="com.action.CustomerInfoUpdateAction">
+        <property name="service" ref="CustomerService"/>
+    </bean>
+    <bean name="updateCustomer" class="com.action.updateCustomerAction">
+        <property name="service" ref="CustomerService"/>
+    </bean>
     <!--配置事务核心管理器-->
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>

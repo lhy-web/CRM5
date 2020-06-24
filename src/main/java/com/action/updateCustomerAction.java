@@ -3,13 +3,21 @@ package com.action;
 import com.domain.CustomerLevel;
 import com.domain.Customerinfo;
 import com.domain.DictionaryTypeInfo;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.CustomerInfoService;
-//*
-// 增加客户信息的Action
-// */
-public class AddCustomerInfoAction extends ActionSupport {
+
+/*修改客户信息*/
+public class updateCustomerAction extends ActionSupport {
+    private Integer customerId;
+
+    public Integer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
     private String customerName;
     private Integer customerPropertiesId;
     private Integer customerTypeId;
@@ -23,14 +31,11 @@ public class AddCustomerInfoAction extends ActionSupport {
     private String customerCode;
     private Integer openBankId;
     private String bankAccount;
-    private Integer customerSourceId;
-    private String noteInformation;
-    private CustomerInfoService service;
-
 
     @Override
     public String execute() throws Exception {
         Customerinfo customerInfo=new Customerinfo();
+        customerInfo.setCustomerId(customerId);
         customerInfo.setCustomerName(customerName);
         customerInfo.setCustomerCompanyWebsize(customerCompanyWebsize);
         customerInfo.setCustomerCompanyPhone(customerCompanyPhone);
@@ -60,14 +65,12 @@ public class AddCustomerInfoAction extends ActionSupport {
         DictionaryTypeInfo dictionaryTypeInfo4 = new DictionaryTypeInfo();
         dictionaryTypeInfo4.setDataId(customerSourceId);
         customerInfo.setDictionaryTypeInfoByCustomerSource(dictionaryTypeInfo4);
-        if(service.findCustomerName(customerName)==false){
-            service.saveCustomerInfo(customerInfo);
 
-        }else {
-            ActionContext.getContext().put("error","该公司已经存在");
+        Boolean b=service.updateCustomerInfo(customerInfo);
+        if (b==true) {
+            return "updateCustomer";
         }
-
-        return "addCustomer";
+        else return "false";
     }
 
     public String getCustomerName() {
@@ -198,5 +201,7 @@ public class AddCustomerInfoAction extends ActionSupport {
         this.service = service;
     }
 
-
+    private Integer customerSourceId;
+    private String noteInformation;
+    private CustomerInfoService service;
 }

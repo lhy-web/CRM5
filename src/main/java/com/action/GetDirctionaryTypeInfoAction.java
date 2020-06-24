@@ -10,7 +10,8 @@ import com.service.CustomerInfoServiceImpl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
+/*
+* 获得数据字典数据的信息*/
 public class GetDirctionaryTypeInfoAction extends ActionSupport {
     private CustomerInfoService service;
 

@@ -23,4 +23,8 @@ public interface CustomerInfoDao {
     List<DictionaryTypeInfo> getCustomerSource();
     //查看公司名是否重复
     boolean getChongfu(String customerName);
+    //查看客户详细信息
+    Customerinfo findById(Integer customerInfoId);
+    //修改客户信息
+    Boolean updateCustomer(Customerinfo customerInfo);
 }
