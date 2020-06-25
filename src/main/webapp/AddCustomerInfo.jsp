@@ -12,6 +12,7 @@
     <title>Title</title>
 </head>
 <body>
+
 <h1 align="center" style="font-family:华义彩云;"> 客户信息添加</h1>
 <form action="addCustomerInfo" method="post">
 <table width="100%" height="48" border="1" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolordark="#aaaaaa"  bordercolorlight="#FFFFFF">
