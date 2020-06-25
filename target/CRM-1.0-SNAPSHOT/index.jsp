@@ -17,7 +17,7 @@
 <table width="100%" height="23" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td colspan="2" width="100%" align="center">
-            请输入查询条件：
+            请输入查询条件:
 
             <select name="type">
                 <option value="customerName" ${customerName }> 客户名称</option>

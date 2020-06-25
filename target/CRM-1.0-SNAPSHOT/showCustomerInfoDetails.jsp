@@ -15,7 +15,7 @@
 
 <table width="100%" height="48" border="1" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolordark="#aaaaaa"  bordercolorlight="#FFFFFF">
     <tr style="padding:5px;">
-        <td bgcolor="#eeeeee"> 客户名称：</td>
+        <td bgcolor="#eeeeee"> 客户名称 ：</td>
         <td>${customerInfo.customerName} </td>
 
         <td bgcolor="#eeeeee"> 客户性质：</td>
