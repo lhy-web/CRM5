@@ -25,9 +25,10 @@ public class ManyDeleteCustomerAction extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
+        if(checkboxDelete!=null){
         for (Integer integer : checkboxDelete) {
             service.deleteCustomerInfo(integer);
-        }
+        }}
         return "manyDelete";
     }
 }
