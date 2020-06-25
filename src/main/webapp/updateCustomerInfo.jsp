@@ -43,7 +43,7 @@
 
 
         <tr style="padding:5px;">
-            <td bgcolor="#eeeeee"> 客户类型：</td>
+            <td bgcolor="#eeeeee"> 客户类型:</td>
             <td>
                 <select name="customerTypeId">
                     <s:iterator value="#customerType" id="CustomerType">
