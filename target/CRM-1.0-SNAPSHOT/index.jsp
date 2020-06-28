@@ -96,5 +96,6 @@
 <input type="submit" value="批量删除">
 </form>
 <input type="button" value="添加" onclick="window.open('GetDictionary');">
+<input type="button" value="全部导出" onclick="window.open('putCustomerInfoToExcel');">
 </body>
 </html>

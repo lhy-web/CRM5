@@ -32,6 +32,9 @@
     <action name="manyDelete" class="manyDelete">
         <result name="manyDelete" type="chain">findAll</result>
     </action>
+    <action name="putCustomerInfoToExcel" class="putCustomerInfoToExcel">
+        <result name="put" type="chain">findAll</result>
+    </action>
 </package>
 
 </struts>

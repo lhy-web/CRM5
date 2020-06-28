@@ -110,7 +110,16 @@
       <version>0.9.1.2</version>
     </dependency>
 
-
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>3.14</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.14</version>
+    </dependency>
     <!-- 导入 struts2 -->
     <dependency>
       <groupId>org.apache.struts</groupId>
