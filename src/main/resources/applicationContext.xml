@@ -91,6 +91,16 @@
     <bean name="userLogin" class="com.action.UserLoginAction">
         <property name="service" ref="UserService"/>
     </bean>
+    <bean name="userInfo" class="com.action.UserInfoAction">
+        <property name="service" ref="UserService"/>
+    </bean>
+    <bean name="UserInfoDetails" class="com.action.UserInfoDetailsAction">
+        <property name="service" ref="UserService"/>
+    </bean>
+    <bean name="addUser" class="com.action.AddUserAction">
+        <property name="service" ref="UserService"/>
+    </bean>
+
 
     <!--配置事务核心管理器-->
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">

@@ -34,20 +34,31 @@
 
     </bean>
 <!--    配置dao-->
+    <!--客户的Dao-->
     <bean name="TestDao" class="com.dao.TestDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <bean name="CustomerDao" class="com.dao.CustomerInfoDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <!--用户的Dao-->
+    <bean name="UserDao" class="com.dao.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 <!--    配置service-->
+    <!--客户的service-->
     <bean name="TestService" class="com.service.TestServiceImpl">
         <property name="dao" ref="TestDao"/>
     </bean>
     <bean name="CustomerService" class="com.service.CustomerInfoServiceImpl">
         <property name="dao" ref="CustomerDao"/>
     </bean>
+    <!--用户的service-->
+    <bean name="UserService" class="com.service.UserServiceImpl">
+        <property name="dao" ref="UserDao"/>
+    </bean>
 <!--    配置Action-->
+    <!--客户的Action-->
     <bean name="TestAction" class="com.action.TestAction">
         <property name="service" ref="TestService"/>
     </bean>
@@ -75,9 +86,22 @@
     <bean name="manyDelete" class="com.action.ManyDeleteCustomerAction">
         <property name="service" ref="CustomerService"/>
     </bean>
-    <bean name="putCustomerInfoToExcel" class="com.action.PutCustomerInfoToExcel">
-        <property name="service" ref="CustomerService"/>
+
+    <!--用户的Action-->
+    <bean name="userLogin" class="com.action.UserLoginAction">
+        <property name="service" ref="UserService"/>
     </bean>
+    <bean name="userInfo" class="com.action.UserInfoAction">
+        <property name="service" ref="UserService"/>
+    </bean>
+    <bean name="UserInfoDetails" class="com.action.UserInfoDetailsAction">
+        <property name="service" ref="UserService"/>
+    </bean>
+    <bean name="addUser" class="com.action.AddUserAction">
+        <property name="service" ref="UserService"/>
+    </bean>
+
+
     <!--配置事务核心管理器-->
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>

@@ -5,6 +5,7 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 <package name="Test" namespace="/" extends="struts-default">
+<!--    客户-->
     <action name="Test" class="TestAction">
         <result name="success">index.jsp</result>
     </action>
@@ -35,6 +36,22 @@
     <action name="putCustomerInfoToExcel" class="putCustomerInfoToExcel">
         <result name="put" type="chain">findAll</result>
     </action>
+<!--    User-->
+    <action name="Login" class="userLogin">
+        <result name="LoginSuccess">FunctionSelect.jsp</result>
+        <result name="LoginFalse">LoginFalse.jsp</result>
+    </action>
+    <action name="userFindAll" class="userInfo">
+        <result name="findAll">FindAllUserInfo.jsp</result>
+    </action>
+    <action name="UserInfoDetails" class="UserInfoDetails">
+        <result name="success">UserInfoDetails.jsp</result>
+    </action>
+    <action name="addUser" class="addUser">
+        <result name="success">FunctionSelect.jsp</result>
+        <result name="false">addUserFalse.jsp</result>
+    </action>
+
 </package>
 
 </struts>

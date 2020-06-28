@@ -7,7 +7,7 @@ import com.service.UserService;
 
 import java.util.List;
 
-public class UserLoginAction extends ActionSupport {
+public class  UserLoginAction extends ActionSupport {
     private String userLoginName;
     private String userPassWord;
     private UserService service;

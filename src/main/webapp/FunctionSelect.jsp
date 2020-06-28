@@ -12,7 +12,7 @@
 </head>
 <body>
 <div align="center">
-欢迎登陆,当前用户：${user.userName}     <input type="button" value="退出当前用户" onclick="">
+欢迎登陆,当前用户：${user.userName}
 </div>
 <div align="right">当前时间：<span id="time"></span></div>
 
@@ -41,6 +41,18 @@
     //每间隔1000毫秒执行一次程序，保证时间动态显示
     setInterval("show()",1000);
 </script>
+
+<table align="center">
+    <tr>
+        <td><a href="${pageContext.request.contextPath}/userFindAll">显示用户信息</a></td>
+        <td><a href="${pageContext.request.contextPath}/addUser.jsp">用户添加</a></td>
+        <td><a href="">a</a></td>
+        <td><a href="">b</a></td>
+        <td><a href="">c</a></td>
+        <td><a href="">d</a></td>
+    </tr>
+
+</table>
 
 </body>
 </html>

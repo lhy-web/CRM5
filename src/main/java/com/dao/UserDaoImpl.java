@@ -8,6 +8,7 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import java.util.List;
 
 public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
+
     public Boolean Login(String userLoginName, String userPassword) {
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
         String hql="from User where userLoginName=:name and userPassWord=:pwd";
@@ -28,5 +29,36 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
         query.setParameter("name",userLoginName);
         List<User> list = query.list();
         return list;
+    }
+
+    public List<User> findAllUser() {
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String hql="from User";
+        Query query = session.createQuery(hql);
+        List<User> list = query.list();
+        return list;
+
+
+    }
+
+    public User finUserDetails(Integer userId) {
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String hql="from User where userId=:userId";
+        Query query = session.createQuery(hql);
+        query.setParameter("userId",userId);
+        User user = (User) query.list().get(0);
+        return user;
+    }
+
+    public Boolean addUser(String userName, String userLoginName, String userPassWord,
+                           String userTelphone, String userEmail, String role) {
+        User user = new User(null,userName,userLoginName,userPassWord,userTelphone,userEmail,role);
+        try {
+            getHibernateTemplate().save(user);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+
     }
 }

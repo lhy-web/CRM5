@@ -21,4 +21,18 @@ public class UserServiceImpl implements UserService {
     public List<User> getUser(String userLoginName) {
         return  dao.getUser(userLoginName);
     }
+
+    public List<User> findAllUser() {
+        return dao.findAllUser();
+    }
+
+    public User findUserDetails(Integer userId) {
+        return dao.finUserDetails(userId);
+    }
+
+    public Boolean addUser(String userName, String userLoginName, String userPassWord, String userTelphone, String userEmail, String role) {
+        return dao.addUser(userName,userLoginName,userPassWord,userTelphone,userEmail,role);
+    }
+
+
 }
