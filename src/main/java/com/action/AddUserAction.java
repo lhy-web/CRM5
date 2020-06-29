@@ -44,12 +44,13 @@ public class AddUserAction extends ActionSupport {
     public String execute() throws Exception {
         Boolean b=service.FindRepeatUser(userLoginName);
         if(b==true){
-        Boolean Boolean = service.addUser(userName, userLoginName, userPassWord, userTelphone, userEmail, role);
-        if (Boolean==true){
-            return "success";
+            Boolean Boolean = service.addUser(userName, userLoginName, userPassWord, userTelphone, userEmail, role);
+            if (Boolean==true){
+                return "success";
+            }else {
+                return "false";
+            }
         }else {
-            return "false";
-        }}else {
             ActionContext.getContext().put("repeat","用户名重复");
             return "repeat";
         }

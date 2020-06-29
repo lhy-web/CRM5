@@ -102,6 +102,15 @@
     <bean name="addUser" class="com.action.AddUserAction">
         <property name="service" ref="UserService"/>
     </bean>
+    <bean name="deleteUser" class="com.action.DeleteUserAction">
+        <property name="service" ref="UserService"/>
+    </bean>
+    <bean name="updateUser_Echo" class="com.action.updateUser_EchoAction">
+        <property name="service" ref="UserService"/>
+    </bean>
+    <bean name="updateUser" class="com.action.UpdateUserAction">
+    <property name="service" ref="UserService"/>
+</bean>
 
 
     <!--配置事务核心管理器-->

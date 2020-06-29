@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.domain.User;
+import org.apache.poi.hssf.record.DVALRecord;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
@@ -70,5 +71,35 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
         if(query.list().size()==0){
             return true;
         }else return false;
+    }
+
+    public Boolean deleteUserById(Integer userId) {
+        try {
+            Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+            User user = session.get(User.class, userId);
+            session.delete(user);
+            return true;
+        }catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public Boolean updateUser(Integer userId, String userName, String userLoginName, String userPassWord, String userTelphone, String userEmail, String role) {
+        try {
+            Session currentSession = getHibernateTemplate().getSessionFactory().getCurrentSession();
+            User user = currentSession.get(User.class, userId);
+            user.setUserName(userName);
+            user.setUserLoginName(userLoginName);
+            user.setUserPassWord(userPassWord);
+            user.setUserTelphone(userTelphone);
+            user.setUserEmail(userEmail);
+            user.setRole(role);
+            currentSession.update(user);
+            return true;
+        }catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
     }
 }

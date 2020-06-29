@@ -38,5 +38,14 @@ public class UserServiceImpl implements UserService {
         return dao.FindRepeatUser(userLoginName);
     }
 
+    public Boolean deleteUserById(Integer userId) {
+        return  dao.deleteUserById(userId);
+    }
+
+    public Boolean updateUser(Integer userId, String userName, String userLoginName, String userPassWord, String userTelphone, String userEmail, String role) {
+
+        return dao.updateUser(userId,userName,userLoginName,userPassWord,userTelphone,userEmail,role);
+    }
+
 
 }

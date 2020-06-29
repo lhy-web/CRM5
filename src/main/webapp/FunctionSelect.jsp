@@ -25,7 +25,7 @@
 
         }
         function logoutFrom() {
-            if(confirm("你确定要注销吗？"))
+            if(confirm("你确定要退出吗？"))
             {
                 location.href="${pageContext.request.contextPath}/Login.jsp";
             }
@@ -34,7 +34,7 @@
 </head>
 <body>
 <div align="center">
-欢迎登陆,当前用户：${user.userName}  当前您的权限为：${user.role}  <input type="button" value="注销" onclick="logoutFrom()">
+欢迎登陆<br>当前用户：${user.userName}  <br>当前您的权限为：${user.role} <br> <input type="button" value="退出" onclick="logoutFrom()">
 </div>
 <div align="right">当前时间：<span id="time"></span></div>
 
@@ -66,12 +66,18 @@
 <c:if test="${user!=null}">
 <table align="center">
     <tr>
+        <c:if test="${user.role eq '总经理'}">
         <td><a href="${pageContext.request.contextPath}/userFindAll">显示用户信息</a></td>
         <td><a href="${pageContext.request.contextPath}/addUser.jsp">用户添加</a></td>
+            <td><a href=""></a></td>
+            <td><a href="">b</a></td>
+            <td><a href="">c</a></td>
+            <td><a href="">d</a></td></c:if>
+    <c:if test="${user.role eq '普通员工'}">
         <td><a href="">a</a></td>
         <td><a href="">b</a></td>
         <td><a href="">c</a></td>
-        <td><a href="">d</a></td>
+        <td><a href="">d</a></td></c:if>
     </tr>
 
 </table>

@@ -52,7 +52,17 @@
         <result name="false">addUserFalse.jsp</result>
         <result name="repeat">addUser.jsp</result>
     </action>
-
+    <action name="deleteUser" class="deleteUser">
+        <result name="deleteSuccess" type="chain">userFindAll</result>
+        <result name="deleteFalse" type="chain">userFindAll</result>
+    </action>
+    <action name="updateUser_Echo" class="updateUser_Echo">
+        <result name="update">UpdateUserInfo.jsp</result>
+    </action>
+    <action name="updateUser" class="updateUser">
+        <result name="updateSuccess" type="chain">userFindAll</result>
+        <result name="updateFalse" type="chain">userFindAll</result>
+    </action>
 </package>
 
 </struts>

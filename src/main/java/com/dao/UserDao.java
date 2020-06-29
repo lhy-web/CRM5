@@ -16,4 +16,8 @@ public interface UserDao {
     Boolean addUser(String userName, String userLoginName, String userPassWord, String userTelphone, String userEmail, String role);
 
     Boolean FindRepeatUser(String userLoginName);
+
+    Boolean deleteUserById(Integer userId);
+
+    Boolean updateUser(Integer userId, String userName, String userLoginName, String userPassWord, String userTelphone, String userEmail, String role);
 }
