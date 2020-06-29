@@ -1,5 +1,6 @@
 package com.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.UserService;
 
@@ -41,11 +42,16 @@ public class AddUserAction extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
+        Boolean b=service.FindRepeatUser(userLoginName);
+        if(b==true){
         Boolean Boolean = service.addUser(userName, userLoginName, userPassWord, userTelphone, userEmail, role);
         if (Boolean==true){
             return "success";
         }else {
             return "false";
+        }}else {
+            ActionContext.getContext().put("repeat","用户名重复");
+            return "repeat";
         }
 
     }

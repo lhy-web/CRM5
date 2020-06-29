@@ -14,4 +14,6 @@ public interface UserDao {
     User finUserDetails(Integer userId);
 
     Boolean addUser(String userName, String userLoginName, String userPassWord, String userTelphone, String userEmail, String role);
+
+    Boolean FindRepeatUser(String userLoginName);
 }

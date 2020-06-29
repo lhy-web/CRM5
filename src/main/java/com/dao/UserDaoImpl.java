@@ -61,4 +61,14 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
         }
 
     }
+
+    public Boolean FindRepeatUser(String userLoginName) {
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String hql="from User where userLoginName=:userLoginName";
+        Query query = session.createQuery(hql);
+        query.setParameter("userLoginName",userLoginName);
+        if(query.list().size()==0){
+            return true;
+        }else return false;
+    }
 }

@@ -16,4 +16,6 @@ public interface UserService {
     User findUserDetails(Integer userId);
 //用户添加
     Boolean addUser(String userName, String userLoginName, String userPassWord, String userTelphone, String userEmail, String role);
+
+    Boolean FindRepeatUser(String userLoginName);
 }

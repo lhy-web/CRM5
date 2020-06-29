@@ -34,5 +34,9 @@ public class UserServiceImpl implements UserService {
         return dao.addUser(userName,userLoginName,userPassWord,userTelphone,userEmail,role);
     }
 
+    public Boolean FindRepeatUser(String userLoginName) {
+        return dao.FindRepeatUser(userLoginName);
+    }
+
 
 }

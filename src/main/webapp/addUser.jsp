@@ -21,7 +21,7 @@
         </tr>
         <tr >
             <td bgcolor="#eeeeee"> 用户登录名 ：</td>
-            <td><input type="text" name="userLoginName"></td>
+            <td><input type="text" name="userLoginName"><span style="color: red">${repeat}</span></td>
         </tr>
         <tr >
             <td bgcolor="#eeeeee"> 用户登陆密码 ：</td>

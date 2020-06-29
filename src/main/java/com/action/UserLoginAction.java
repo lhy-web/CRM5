@@ -40,6 +40,8 @@ public class  UserLoginAction extends ActionSupport {
             User user = name.get(0);
             ActionContext.getContext().put("user",user);
             return "LoginSuccess";
-        }else return "LoginFalse";
+        }else {
+            ActionContext.getContext().put("LoginFalse","用户名或密码错误,请重新输入");
+            return "LoginFalse";}
     }
 }

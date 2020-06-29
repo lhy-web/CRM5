@@ -33,13 +33,13 @@
     <action name="manyDelete" class="manyDelete">
         <result name="manyDelete" type="chain">findAll</result>
     </action>
-    <action name="putCustomerInfoToExcel" class="putCustomerInfoToExcel">
+    <action name="putCustomerInfoToExcel" class="PutCustomerInfoToExcel">
         <result name="put" type="chain">findAll</result>
     </action>
 <!--    User-->
     <action name="Login" class="userLogin">
         <result name="LoginSuccess">FunctionSelect.jsp</result>
-        <result name="LoginFalse">LoginFalse.jsp</result>
+        <result name="LoginFalse">Login.jsp</result>
     </action>
     <action name="userFindAll" class="userInfo">
         <result name="findAll">FindAllUserInfo.jsp</result>
@@ -50,6 +50,7 @@
     <action name="addUser" class="addUser">
         <result name="success">FunctionSelect.jsp</result>
         <result name="false">addUserFalse.jsp</result>
+        <result name="repeat">addUser.jsp</result>
     </action>
 
 </package>

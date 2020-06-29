@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: ljx
@@ -9,10 +10,31 @@
 <html>
 <head>
     <title>功能选择目录</title>
+    <script type="text/javascript">
+        window.onload=function () {
+            var time = 5;
+            var secondEle=document.getElementById("second");
+            var timer=setInterval(function () {
+                secondEle.innerHTML=time;
+                time--;
+                if(time==0){
+                    clearInterval(time);
+                    location.href="${pageContext.request.contextPath}/Login.jsp";
+                }
+            },1000)
+
+        }
+        function logoutFrom() {
+            if(confirm("你确定要注销吗？"))
+            {
+                location.href="${pageContext.request.contextPath}/Login.jsp";
+            }
+        }
+    </script>
 </head>
 <body>
 <div align="center">
-欢迎登陆,当前用户：${user.userName}
+欢迎登陆,当前用户：${user.userName}  当前您的权限为：${user.role}  <input type="button" value="注销" onclick="logoutFrom()">
 </div>
 <div align="right">当前时间：<span id="time"></span></div>
 
@@ -41,7 +63,7 @@
     //每间隔1000毫秒执行一次程序，保证时间动态显示
     setInterval("show()",1000);
 </script>
-
+<c:if test="${user!=null}">
 <table align="center">
     <tr>
         <td><a href="${pageContext.request.contextPath}/userFindAll">显示用户信息</a></td>
@@ -53,6 +75,10 @@
     </tr>
 
 </table>
-
+</c:if>
+<c:if test="${user==null}">
+    请先登陆,本页面会在
+    <span style="color: red" id="second">5</span>秒钟后跳转，如不跳转，请点击<a href="${pageContext.request.contextPath}/Login.jsp">这里</a>
+</c:if>
 </body>
 </html>

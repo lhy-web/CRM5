@@ -86,7 +86,9 @@
     <bean name="manyDelete" class="com.action.ManyDeleteCustomerAction">
         <property name="service" ref="CustomerService"/>
     </bean>
-
+    <bean name="PutCustomerInfoToExcel" class="com.action.PutCustomerInfoToExcel">
+        <property name="service" ref="CustomerService"/>
+    </bean>
     <!--用户的Action-->
     <bean name="userLogin" class="com.action.UserLoginAction">
         <property name="service" ref="UserService"/>
