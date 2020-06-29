@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
     <title>客户管理</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/form/css/style.css" />
 
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css"/>
 
@@ -44,7 +44,7 @@
 </head>
 <body>
 <div class="box">
-    <div class="title">客户管理</div>
+    <div class="title"> 客户管理</div>
     <div class="content">
         <!--搜索输入框及查询、重置按钮-->
         <form action="findAllCustomer" method="post">
