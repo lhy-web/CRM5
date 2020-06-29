@@ -10,19 +10,19 @@
         <result name="success">index.jsp</result>
     </action>
     <action name="findAll" class="FindAllAction" method="findAll">
-        <result name="findAll">index.jsp</result>
+        <result name="findAll">/form/CustomerInfo.jsp</result>
     </action>
     <action name="GetDictionary" class="getDirctionary" method="getDirctionary">
-        <result name="getDirctionary">AddCustomerInfo.jsp</result>
+        <result name="getDirctionary">/form/AddCustomerInfo.jsp</result>
     </action>
     <action name="addCustomerInfo" class="addCustomerInfo">
         <result name="addCustomer" type="chain">findAll</result>
     </action>
     <action name="ViewDCI" class="ViewDetails">
-        <result name="viewDetails">showCustomerInfoDetails.jsp</result>
+        <result name="viewDetails">/form/showCustomerInfoDetails.jsp</result>
     </action>
     <action name="update" class="update">
-        <result name="update">updateCustomerInfo.jsp</result>
+        <result name="update">/form/updateCustomerInfo.jsp</result>
     </action>
     <action name="updateCustomer" class="updateCustomer">
         <result name="updateCustomer" type="chain">findAll</result>
@@ -38,26 +38,26 @@
     </action>
 <!--    User-->
     <action name="Login" class="userLogin">
-        <result name="LoginSuccess">FunctionSelect.jsp</result>
-        <result name="LoginFalse">Login.jsp</result>
+        <result name="LoginSuccess">/form/FunctionSelect.jsp</result>
+        <result name="LoginFalse">/form/Login.jsp</result>
     </action>
     <action name="userFindAll" class="userInfo">
-        <result name="findAll">FindAllUserInfo.jsp</result>
+        <result name="findAll">/form/FindAllUserInfo.jsp</result>
     </action>
     <action name="UserInfoDetails" class="UserInfoDetails">
-        <result name="success">UserInfoDetails.jsp</result>
+        <result name="success">/form/UserInfoDetails.jsp</result>
     </action>
     <action name="addUser" class="addUser">
-        <result name="success">FunctionSelect.jsp</result>
-        <result name="false">addUserFalse.jsp</result>
-        <result name="repeat">addUser.jsp</result>
+        <result name="success">/form/FunctionSelect.jsp</result>
+        <result name="false">/form/addUserFalse.jsp</result>
+        <result name="repeat">/form/addUser.jsp</result>
     </action>
     <action name="deleteUser" class="deleteUser">
         <result name="deleteSuccess" type="chain">userFindAll</result>
         <result name="deleteFalse" type="chain">userFindAll</result>
     </action>
     <action name="updateUser_Echo" class="updateUser_Echo">
-        <result name="update">UpdateUserInfo.jsp</result>
+        <result name="update">/form/UpdateUserInfo.jsp</result>
     </action>
     <action name="updateUser" class="updateUser">
         <result name="updateSuccess" type="chain">userFindAll</result>
