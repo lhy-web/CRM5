@@ -9,32 +9,32 @@
     <action name="Test" class="TestAction">
         <result name="success">index.jsp</result>
     </action>
-    <action name="findAll" class="FindAllAction" method="findAll">
+    <action name="findAllCustomer" class="FindAllAction" method="findAll">
         <result name="findAll">/form/CustomerInfo.jsp</result>
     </action>
     <action name="GetDictionary" class="getDirctionary" method="getDirctionary">
         <result name="getDirctionary">/form/AddCustomerInfo.jsp</result>
     </action>
     <action name="addCustomerInfo" class="addCustomerInfo">
-        <result name="addCustomer" type="chain">findAll</result>
+        <result name="addCustomer" type="chain">findAllCustomer</result>
     </action>
     <action name="ViewDCI" class="ViewDetails">
         <result name="viewDetails">/form/showCustomerInfoDetails.jsp</result>
     </action>
-    <action name="update" class="update">
+    <action name="updateC" class="update">
         <result name="update">/form/updateCustomerInfo.jsp</result>
     </action>
     <action name="updateCustomer" class="updateCustomer">
-        <result name="updateCustomer" type="chain">findAll</result>
+        <result name="updateCustomer" type="chain">findAllCustomer</result>
     </action>
     <action name="delete" class="delete">
-        <result name="delete" type="chain">findAll</result>
+        <result name="delete" type="chain">findAllCustomer</result>
     </action>
     <action name="manyDelete" class="manyDelete">
-        <result name="manyDelete" type="chain">findAll</result>
+        <result name="manyDelete" type="chain">findAllCustomer</result>
     </action>
     <action name="putCustomerInfoToExcel" class="PutCustomerInfoToExcel">
-        <result name="put" type="chain">findAll</result>
+        <result name="put" type="chain">findAllCustomer</result>
     </action>
 <!--    User-->
     <action name="Login" class="userLogin">

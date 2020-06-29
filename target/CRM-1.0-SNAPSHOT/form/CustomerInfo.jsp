@@ -47,7 +47,7 @@
     <div class="title">客户管理</div>
     <div class="content">
         <!--搜索输入框及查询、重置按钮-->
-        <form action="findAll" method="post">
+        <form action="findAllCustomer" method="post">
             <div class="container content_width">
                 <div class="person_search">
                     <div class="search_input">
@@ -110,8 +110,8 @@
                         <td>${CustomerInfo.customerCompanyPhone }</td>
                         <td>${CustomerInfo.register }</td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/ViewDCI?CustomerInfoId=${CustomerInfo.customerId}"" class="edit">查看详情</a>
-                            <a href="${pageContext.request.contextPath}/update?CustomerInfoId=${CustomerInfo.customerId}" >修改</a>
+                            <a href="${pageContext.request.contextPath}/ViewDCI?CustomerInfoId=${CustomerInfo.customerId}" class="edit">查看详情</a>
+                            <a href="${pageContext.request.contextPath}/updateC?CustomerInfoId=${CustomerInfo.customerId}" >修改</a>
                             <a href="${pageContext.request.contextPath}/delete?CustomerInfoId=${CustomerInfo.customerId}" >删除</a></td>
                         </td>
                     </tr>
@@ -121,14 +121,14 @@
                     <td colspan="12" align="center">
 
 
-                        <a href="findAll?currentPage=1">首页</a>
-                        <a href="findAll?currentPage=${list.currentPage-1 }">上一页</a>
+                        <a href="findAllCustomer?currentPage=1">首页</a>
+                        <a href="findAllCustomer?currentPage=${list.currentPage-1 }">上一页</a>
 
 
 
 
-                        <a href="findAll?currentPage=${list.currentPage+1 }">下一页</a>
-                        <a href="findAll?currentPage=${list.totalPage }">尾页</a>
+                        <a href="findAllCustomer?currentPage=${list.currentPage+1 }">下一页</a>
+                        <a href="findAllCustomer?currentPage=${list.totalPage }">尾页</a>
 
 
 
