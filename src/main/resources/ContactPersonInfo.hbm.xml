@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.domain.ContactPersonInfo" table="contactpersoninfo">
+        <id name="contactId" type="java.lang.Integer">
+            <column name="contactId"/>
+            <generator class="identity"></generator>
+        </id>
+        <property name="customerId" type="java.lang.Integer">
+            <column name="customerId"/>
+        </property>
+        <property name="contactName" type="java.lang.String">
+            <column name="contactName"/>
+        </property>
+        <property name="contactSex" type="java.lang.String">
+            <column name="contactSex" />
+        </property>
+        <property name="contactBirthday" type="java.util.Date">
+            <column name="contactBirthday"  />
+        </property>
+        <property name="contactPost" type="java.lang.String">
+            <column name="contactPost"  />
+        </property>
+        <property name="contactOfficePhone" type="java.lang.String">
+            <column name="contactOfficePhone"  />
+        </property>
+        <property name="contactMobilePhone" type="java.lang.String">
+            <column name="contactMobilePhone"  />
+        </property>
+        <property name="contactEmail" type="java.lang.String">
+            <column name="contactEmail"  />
+        </property>
+        <property name="contactRegistDate" type="java.util.Date">
+            <column name="contactRegistDate" />
+        </property>
+        <property name="contactQQnumber" type="java.lang.String">
+            <column name="contactQQNumber"  />
+        </property>
+        <property name="contactRemarks" type="java.lang.String">
+            <column name="contactRemarks"  />
+        </property>
+    </class>
+</hibernate-mapping>

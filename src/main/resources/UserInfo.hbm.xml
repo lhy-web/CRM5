@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.domain.UserInfo" table="user">
+        <id name="userId" column="userId" type="java.lang.Integer">
+            <generator class="native"/>
+        </id>
+
+        <property name="userName" column="userName" type="java.lang.String"/>
+        <property name="userLoginName" column="userLoginName" type="java.lang.String"/>
+        <property name="userPassWord" column="userPassWord" type="java.lang.String"/>
+        <property name="userTelphone" column="userTelphone" type="java.lang.String"/>
+        <property name="userEmail" column="userEmail" type="java.lang.String"/>
+        <property name="role" column="role"/>
+
+
+    </class>
+</hibernate-mapping>

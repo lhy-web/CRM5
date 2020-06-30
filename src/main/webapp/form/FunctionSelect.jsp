@@ -27,7 +27,7 @@
         function logoutFrom() {
             if(confirm("你确定要退出吗？"))
             {
-                location.href="${pageContext.request.contextPath}/Login.jsp";
+                location.href="${pageContext.request.contextPath}/form/Login.jsp";
             }
         }
     </script>
@@ -84,7 +84,7 @@
 </c:if>
 <c:if test="${user==null}">
     请先登陆,本页面会在
-    <span style="color: red" id="second">5</span>秒钟后跳转，如不跳转，请点击<a href="${pageContext.request.contextPath}/Login.jsp">这里</a>
+    <span style="color: red" id="second">5</span>秒钟后跳转，如不跳转，请点击<a href="${pageContext.request.contextPath}/form/Login.jsp">这里</a>
 </c:if>
 </body>
 </html>

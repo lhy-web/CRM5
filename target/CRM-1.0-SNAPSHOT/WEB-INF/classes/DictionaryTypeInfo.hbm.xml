@@ -4,17 +4,18 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.domain.DictionaryTypeInfo" table="dictionarytype_info" >
-        <id name="dataId" type="java.lang.Integer">
+        <id name="dataId" type="java.lang.Integer" >
             <column name="DataId" />
             <generator class="identity"/>
         </id>
-        <many-to-one name="dictionaryType" class="com.domain.DictionaryType" fetch="select" lazy="false">
-            <column name="dataTypeId" />
-        </many-to-one>
+        <property name="dictionaryType1" column="dataTypeId" insert="false" update="false">
+        </property>
         <property name="dataInformationName" type="java.lang.String">
             <column name="DataInformationName" />
         </property>
-
+        <many-to-one name="dictionaryType" class="com.domain.DictionaryType" fetch="select" lazy="false">
+            <column name="dataTypeId" />
+        </many-to-one>
 
 
     </class>

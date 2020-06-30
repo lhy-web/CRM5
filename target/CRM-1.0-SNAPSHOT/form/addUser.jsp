@@ -39,8 +39,8 @@
             <td bgcolor="#eeeeee"> 用户职位 ：</td>
             <td>
                 <select  name="role">
-                    <option value="普通员工">普通员工</option>
-                    <option value="经理">经理</option>
+                    <option value="30">普通员工</option>
+                    <option value="27">经理</option>
                 </select>
             </td>
         </tr>

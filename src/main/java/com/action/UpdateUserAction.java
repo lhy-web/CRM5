@@ -21,7 +21,7 @@ public class UpdateUserAction extends ActionSupport {
     private String userPassWord;
     private String userTelphone;
     private String userEmail;
-    private String role;
+    private Integer role;
 
     public UserService getService() {
         return service;
@@ -71,11 +71,11 @@ public class UpdateUserAction extends ActionSupport {
         this.userEmail = userEmail;
     }
 
-    public String getRole() {
+    public Integer getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Integer role) {
         this.role = role;
     }
 

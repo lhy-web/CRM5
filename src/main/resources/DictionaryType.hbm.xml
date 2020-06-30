@@ -12,12 +12,12 @@
             <column name="dataTypeName" />
         </property>
 
-
         <set name="dictionaryTypeInfos" inverse="true" lazy="false">
             <key>
                 <column name="DateTypeId" />
             </key>
             <one-to-many class="com.domain.DictionaryTypeInfo" />
         </set>
+
     </class>
 </hibernate-mapping>

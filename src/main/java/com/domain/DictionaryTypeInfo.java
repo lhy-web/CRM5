@@ -5,9 +5,17 @@ import java.io.Serializable;
 
 public class DictionaryTypeInfo  implements Serializable {
     private Integer dataId;
+    private Integer dictionaryType1;
     private DictionaryType dictionaryType;
     private String dataInformationName;
 
+    public Integer getDictionaryType1() {
+        return dictionaryType1;
+    }
+
+    public void setDictionaryType1(Integer dictionaryType1) {
+        this.dictionaryType1 = dictionaryType1;
+    }
 
     public Integer getDataId() {
         return dataId;
@@ -34,6 +42,17 @@ public class DictionaryTypeInfo  implements Serializable {
     }
 
     public DictionaryTypeInfo() {
+    }
+
+    public DictionaryTypeInfo(Integer id) {
+        this.dataId = id;
+    }
+
+    public DictionaryTypeInfo(Integer dataId, Integer dictionaryType1, String dataInformationName) {
+        this.dataId = dataId;
+        this.dictionaryType1 = dictionaryType1;
+        this.dataInformationName = dataInformationName;
+
     }
 
     public DictionaryTypeInfo(Integer dataId, DictionaryType dictionaryType, String dataInformationName) {

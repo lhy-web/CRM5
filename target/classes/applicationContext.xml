@@ -31,37 +31,283 @@
         <!-- 通过mappingDirLoc这个属性，可以配置一个文件夹，spring就会扫描这个文件夹下的所有映射文件 -->
         <property name="mappingLocations" value="classpath:*.hbm.xml"/>
 
-
     </bean>
-<!--    配置dao-->
-    <!--客户的Dao-->
-    <bean name="TestDao" class="com.dao.TestDaoImpl">
+
+    <!--配置事务核心管理器-->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
+    <!--8.事务注解配置-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory">
+        </property>
+    </bean>
+
+
+
+    <!-- =====================角色模块(菜单信息)====================================== -->
+    <!-- 定义menuInfoDAO -->
+    <bean id="menuInfoDAO" class="com.dao.MenuInfoDAOImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <!-- 定义menuInfoDAO 代理对象-->
+    <!--没有提交 Hibernate的事务，这将无法对数据库进行改动，
+     也就是原来调用 menuInfoDAO的地方都要转而调用这个代理对象menuInfoDAOProxy；
+     具体的属性配置在 target 参数那里指定了对象原来的menuInfoDAO 对象进行代理 -->
+
+    <bean id="menuInfoDAOProxy"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager">     <!-- 代理的管理器 -->
+
+            <ref bean="transactionManager"/>
+        </property>
+        <property name="target">                 <!-- 代理的目标 -->
+            <ref bean="menuInfoDAO"/>
+        </property>
+
+        <property name="transactionAttributes"> <!-- 代理的属性 -->
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -Exception</prop><!-- 这里的方法签名可以精确到方法全配置上 -->
+            </props>
+        </property>
+    </bean>
+
+    <!-- 定义menuInfoService -->
+    <bean id="menuInfoService" class="com.service.MenuInfoServiceImpl">
+        <property name="menuInfoDAO">      <!--  属性名称 对应 接口-->
+            <ref bean="menuInfoDAOProxy"/><!--  属性值   对应 代理对象-->
+        </property>
+    </bean>
+    <!--定义menuInfoFindAllAction  -->
+    <bean id="menuInfoFindAllAction" class="com.action.MenuInfoFindAllAction">
+        <property name="menuInfoService">      <!--  属性名称 对应（ Action 对应 Service）-->
+            <ref bean="menuInfoService"/>     <!--  属性值   对应（ <bean id="customerInfoService"）的id-->
+        </property>
+    </bean>
+
+
+    <!-- =====================角色模块(角色信息)====================================== -->
+    <!-- 定义roleInfoDAO -->
+    <bean id="roleInfoDAO" class="com.dao.RoleInfoDAOImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <!-- 定义roleInfoDAO 代理对象-->
+    <!--没有提交 Hibernate的事务，这将无法对数据库进行改动，
+     也就是原来调用 roleInfoDAO的地方都要转而调用这个代理对象roleInfoDAOProxy；
+     具体的属性配置在 target 参数那里指定了对象原来的roleInfoDAO 对象进行代理 -->
+
+    <bean id="roleInfoDAOProxy"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager">     <!-- 代理的管理器 -->
+            <ref bean="transactionManager"/>
+        </property>
+        <property name="target">                 <!-- 代理的目标 -->
+            <ref bean="roleInfoDAO"/>
+        </property>
+
+        <property name="transactionAttributes"> <!-- 代理的属性 -->
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -Exception</prop><!-- 这里的方法签名可以精确到方法全配置上 -->
+            </props>
+        </property>
+    </bean>
+
+    <!--定义roleInfoService  -->
+    <bean id="roleInfoService" class="com.service.RoleInfoServiceImpl">
+        <property name="roleInfoDAO">      <!--  属性名称 对应 接口-->
+            <ref bean="roleInfoDAOProxy" /><!--  属性值   对应 代理对象-->
+        </property>
+    </bean>
+
+    <!--定义addRoleInfoAjaxAction  -->
+    <bean id="addRoleInfoAjaxAction" class="com.dwr.AddRoleInfoAjaxAction">
+        <property name="roleInfoService">      <!--  属性名称 对应（ Action 对应 Service）-->
+            <ref bean="roleInfoService"/>     <!--  属性值   对应（ <bean id="roleInfoService"）的id-->
+        </property>
+
+        <property name="roleRelationshipService">      <!--  属性名称 对应（ Action 对应 Service）-->
+            <ref bean="roleRelationshipService"/>     <!--  属性值   对应（ <bean id="roleRelationshipService"）的id-->
+        </property>
+    </bean>
+
+    <!--定义roleInfoFindAllAction  -->
+    <bean id="roleInfoFindAllAction" class="com.action.RoleInfoFindAllAction">
+        <property name="roleInfoService">      <!--  属性名称 对应（ Action 对应 Service）-->
+            <ref bean="roleInfoService"/>     <!--  属性值   对应（ <bean id="roleInfoService"）的id-->
+        </property>
+    </bean>
+
+
+
+
+
+    <!-- =====================角色模块(角色关系)====================================== -->
+    <!-- 定义roleRelationshipDAO -->
+    <bean id="roleRelationshipDAO" class="com.dao.RoleRelationshipDAOImpl">
+        <property name="hibernateTemplate">
+            <ref bean="hibernateTemplate"/>
+        </property>
+    </bean>
+    <!-- 定义roleRelationshipDAO 代理对象-->
+    <!--没有提交 Hibernate的事务，这将无法对数据库进行改动，
+     也就是原来调用 roleRelationshipDAO的地方都要转而调用这个代理对象roleRelationshipDAOProxy；
+     具体的属性配置在 target 参数那里指定了对象原来的roleRelationshipDAO 对象进行代理 -->
+
+    <bean id="roleRelationshipDAOProxy"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager">     <!-- 代理的管理器 -->
+            <ref bean="transactionManager"/>
+        </property>
+        <property name="target">                 <!-- 代理的目标 -->
+            <ref bean="roleRelationshipDAO"/>
+        </property>
+
+        <property name="transactionAttributes"> <!-- 代理的属性 -->
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -Exception</prop><!-- 这里的方法签名可以精确到方法全配置上 -->
+            </props>
+        </property>
+    </bean>
+    <!--定义"roleRelationshipService"  -->
+    <bean id="roleRelationshipService" class="com.service.RoleRelationshipServiceImpl">
+        <property name="roleRelationshipDAO">      <!--  属性名称 对应 接口-->
+            <ref bean="roleRelationshipDAOProxy"/><!--  属性值   对应 代理对象-->
+        </property>
+    </bean>
+
+    <!--定义roleInfoDetailAction  -->
+    <bean id="roleInfoDetailAction" class="com.action.RoleInfoDetailAction">
+        <property name="roleInfoService">      <!--  属性名称 对应（ Action 对应 Service）-->
+            <ref bean="roleInfoService"/>     <!--  属性值   对应（ <bean id="roleInfoService"）的id-->
+        </property>
+        <property name="roleRelationshipService">      <!--  属性名称 对应（ Action 对应 Service）-->
+            <ref bean="roleRelationshipService"/>     <!--  属性值   对应（ <bean id="roleRelationshipService"）的id-->
+        </property>
+    </bean>
+
+    <!--定义roleInfoUpdateAction  -->
+    <bean id="roleInfoUpdateAction" class="com.action.RoleInfoUpdateAction">
+        <property name="roleInfoService">      <!--  属性名称 对应（ Action 对应 Service）-->
+            <ref bean="roleInfoService"/>     <!--  属性值   对应（ <bean id="roleInfoService"）的id-->
+        </property>
+        <property name="roleRelationshipService">      <!--  属性名称 对应（ Action 对应 Service）-->
+            <ref bean="roleRelationshipService"/>     <!--  属性值   对应（ <bean id="roleRelationshipService"）的id-->
+        </property>
+    </bean>
+
+
+    <!-- =====================客户投诉模块====================================== -->
+
+    <!--    配置dao-->
+
+    <bean name="complainInfoDAO" class="com.dao.ComplainInfoDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!--    配置service-->
+
+    <bean name="complainInfoService" class="com.service.ComplainInfoServiceImpl">
+        <property name="complainInfoDAO" ref="complainInfoDAO"></property>
+    </bean>
+    <!--    配置Action-->
+    <!--    删除-->
+    <bean name="deleteComplainInfoAction" class="com.action.DeleteComplainInfoAction">
+        <property name="complainInfoService" ref="complainInfoService"></property>
+    </bean>
+    <!--批量删除-->
+    <bean name="deleteManyComplainInfoAction" class="com.action.DeleteManyComplainInfoAction">
+        <property name="complainInfoService" ref="complainInfoService"></property>
+    </bean>
+    <!--添加-->
+    <bean name="addComplainInfoAction" class="com.action.AddComplainInfoAction">
+        <property name="complainInfoService" ref="complainInfoService"></property>
+    </bean>
+    <!--    更新投诉信息-->
+    <bean name="updateComplainInfoAction" class="com.action.UpdateComplainInfoAction">
+        <property name="complainInfoService" ref="complainInfoService"></property>
+    </bean>
+
+    <!--查询单个投诉信息  -->
+    <bean id="complainInfoDetailAction" class="com.action.complainInfoDetailAction" >
+        <property name="complainInfoService" ref="complainInfoService"></property>
+    </bean>
+    <!--    展示投诉列表-->
+    <bean name="ComplainInfoFindAllAction" class="com.action.ComplainInfoFindAllAction">
+        <property name="complainInfoService" ref="complainInfoService"></property>
+    </bean>
+    <!--条件查询-->
+    <bean name="findComplainInfoAction" class="com.action.FindComplainInfoAction">
+        <property name="complainInfoService" ref="complainInfoService"></property>
+    </bean>
+
+
+    <!-- =====================数据字典模块====================================== -->
+
+    <!--    配置dao-->
+
+    <bean name="DictionaryDao" class="com.dao.DictionaryTypeDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--    配置service-->
+
+
+    <bean name="DictionaryService" class="com.service.DictionaryTypeServiceImpl">
+        <property name="dao" ref="DictionaryDao"/>
+    </bean>
+    <!--    配置Action-->
+
+    <bean name="findDictionaryTypeAction" class="com.action.FindDictionaryTypeAction">
+        <property name="service" ref="DictionaryService"></property>
+    </bean>
+    <bean name="FindAllDAction" class="com.action.FindAllDictionaryTypeAction">
+        <property name="service" ref="DictionaryService"/>
+    </bean>
+    <bean name="addDictionaryTypeAction" class="com.action.AddDictionaryTypeAction">
+        <property name="service" ref="DictionaryService"></property>
+    </bean>
+    <bean  name="addDictionaryTypeInfoAction" class="com.action.AddDictionaryTypeInfoAction">
+        <property name="service" ref="DictionaryService"></property>
+    </bean>
+    <bean name="updateDictionaryTypeAction" class="com.action.UpdateDictionaryTypeAction">
+        <property name="service" ref="DictionaryService"></property>
+    </bean>
+    <bean name="updateDictionaryTypeInfoAction" class="com.action.UpdateDictionaryTypeInfoAction">
+        <property name="service" ref="DictionaryService"></property>
+    </bean>
+    <bean name="deleteDictionaryTypeAction" class="com.action.DeleteDictionaryTypeAction">
+        <property name="service" ref="DictionaryService"></property>
+    </bean>
+    <bean name="deleteDictionaryTypeInfoAction" class="com.action.DeleteDictionaryTypeInfoAction">
+        <property name="service" ref="DictionaryService"></property>
+    </bean>
+
+
+    <!-- =====================客户信息模块====================================== -->
+    <!--    配置dao-->
+    <!--客户的Dao-->
+
     <bean name="CustomerDao" class="com.dao.CustomerInfoDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    <!--用户的Dao-->
-    <bean name="UserDao" class="com.dao.UserDaoImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-<!--    配置service-->
+
+    <!--    配置service-->
     <!--客户的service-->
-    <bean name="TestService" class="com.service.TestServiceImpl">
-        <property name="dao" ref="TestDao"/>
-    </bean>
+
     <bean name="CustomerService" class="com.service.CustomerInfoServiceImpl">
         <property name="dao" ref="CustomerDao"/>
     </bean>
-    <!--用户的service-->
-    <bean name="UserService" class="com.service.UserServiceImpl">
-        <property name="dao" ref="UserDao"/>
-    </bean>
-<!--    配置Action-->
-    <!--客户的Action-->
-    <bean name="TestAction" class="com.action.TestAction">
-        <property name="service" ref="TestService"/>
-    </bean>
+
+    <!--    配置Action-->
+
+
     <bean name="FindAllAction" class="com.action.FindAllCustomerInfoAction">
         <property name="service" ref="CustomerService"/>
     </bean>
@@ -89,9 +335,21 @@
     <bean name="PutCustomerInfoToExcel" class="com.action.PutCustomerInfoToExcel">
         <property name="service" ref="CustomerService"/>
     </bean>
+
+    <!-- =====================用户模块====================================== -->
+
+    <!--用户的Dao-->
+    <bean name="UserDao" class="com.dao.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!--用户的service-->
+    <bean name="UserService" class="com.service.UserServiceImpl">
+        <property name="dao" ref="UserDao"/>
+    </bean>
     <!--用户的Action-->
     <bean name="userLogin" class="com.action.UserLoginAction">
         <property name="service" ref="UserService"/>
+        <property name="roleRelationshipService" ref="roleRelationshipService"/>
     </bean>
     <bean name="userInfo" class="com.action.UserInfoAction">
         <property name="service" ref="UserService"/>
@@ -109,15 +367,56 @@
         <property name="service" ref="UserService"/>
     </bean>
     <bean name="updateUser" class="com.action.UpdateUserAction">
-    <property name="service" ref="UserService"/>
-</bean>
+        <property name="service" ref="UserService"/>
+    </bean>
 
+    <!-- =====================联系人模块====================================== -->
+    <!--    配置dao-->
 
-    <!--配置事务核心管理器-->
-    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+    <bean name="ContactPersonInfoDao" class="com.dao.ContactPersonInfoDAOImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    <!--8.事务注解配置-->
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!--    配置service-->
+
+    <bean name="ContactService" class="com.service.ContactPersonInfoServiceImpl">
+        <property name="dao" ref="ContactPersonInfoDao"/>
+    </bean>
+    <!--    配置Action-->
+
+    <bean name="FindAllPAction" class="com.action.FindAllContactPersonInfoAction">
+        <property name="service" ref="ContactService"/>
+    </bean>
+    <bean name="saveContactPersonInfo" class="com.action.ContactPersonInfoSaveAction">
+        <property name="service" ref="ContactService"/>
+    </bean>
+    <bean name="deletePerson" class="com.action.deleteContactPersonInfoAction">
+        <property name="service" ref="ContactService"/>
+    </bean>
+    <bean name="manyDeletePerson" class="com.action.ManyDeleteContactPersonInfoAction">
+        <property name="service" ref="ContactService"/>
+    </bean>
+    <bean name="UpdateContactPersonInfoAction" class="com.action.UpdateContactPersonInfoAction" >
+        <property name="service" ref="ContactService"/>
+    </bean>
+    <bean name="putContactPersonInfoExcel" class="com.action.PutContactPersonInfoExcel">
+        <property name="service" ref="ContactService"/>
+    </bean>
+
+    <!-- =====================任务管理模块====================================== -->
+
+    <!--    配置dao-->
+    <bean name="TestDao" class="com.dao.TestDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+<!--    配置service-->
+    <bean name="TestService" class="com.service.TestServiceImpl">
+        <property name="dao" ref="TestDao"/>
+    </bean>
+<!--    配置Action-->
+    <bean name="TestAction" class="com.action.TestAction">
+        <property name="service" ref="TestService"/>
+    </bean>
+
+
 
 </beans>

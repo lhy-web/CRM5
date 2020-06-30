@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.domain.User" table="user">
+    <class name="com.domain.User" table="user2">
         <id name="userId" column="userId" type="java.lang.Integer">
             <generator class="native"/>
         </id>
@@ -14,7 +14,7 @@
         <property name="userPassWord" column="userPassWord" type="java.lang.String"/>
         <property name="userTelphone" column="userTelphone" type="java.lang.String"/>
         <property name="userEmail" column="userEmail" type="java.lang.String"/>
-        <property name="role" column="role" type="java.lang.String"/>
+        <property name="role" column="role"/>
 
 
     </class>

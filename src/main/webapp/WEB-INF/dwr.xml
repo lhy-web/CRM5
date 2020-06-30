@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC
+        "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN"
+        "http://getahead.org/dwr/dwr20.dtd">
+
+<dwr>
+    <allow>
+        <!-- 当在jsp页面引入engine.js、util.js 和 HelloService.js文件时候，注意，第三个js文件名要和这里javascript的值要一样 -->
+        <create creator="new" javascript="HelloService">
+            <!-- 这里面com.ht.bean是包的名字，HelloService是此包里面的类的名字，
+            这个param标签是用来指定那些java类可被js函数调用 -->
+            <param name="class" value="com.test.HelloService" />
+        </create>
+
+        <!-- 添加角色 -->
+        <create creator="spring" javascript="AddRoleInfoAjax">
+            <param name="beanName" value="addRoleInfoAjaxAction"/>
+        </create>
+
+        <create creator="spring" javascript="DictionaryTypeDAO">
+            <param name="beanName" value="dictionaryTypeDAOProxy"/> <!-- value="dictionaryTypeDAO"是在applicationContext.xml文件里的bean 的id获取的 给代理对象管理dictionaryTypeDAOProxy-->
+        </create>
+    </allow>
+
+</dwr>

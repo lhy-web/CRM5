@@ -1,6 +1,7 @@
 package com.service;
 
 import com.dao.UserDao;
+import com.domain.RoleInfo;
 import com.domain.User;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
         return dao.finUserDetails(userId);
     }
 
-    public Boolean addUser(String userName, String userLoginName, String userPassWord, String userTelphone, String userEmail, String role) {
+    public Boolean addUser(String userName, String userLoginName, String userPassWord, String userTelphone, String userEmail, Integer role) {
         return dao.addUser(userName,userLoginName,userPassWord,userTelphone,userEmail,role);
     }
 
@@ -42,9 +43,13 @@ public class UserServiceImpl implements UserService {
         return  dao.deleteUserById(userId);
     }
 
-    public Boolean updateUser(Integer userId, String userName, String userLoginName, String userPassWord, String userTelphone, String userEmail, String role) {
+    public Boolean updateUser(Integer userId, String userName, String userLoginName, String userPassWord, String userTelphone, String userEmail, Integer role) {
 
         return dao.updateUser(userId,userName,userLoginName,userPassWord,userTelphone,userEmail,role);
+    }
+
+    public RoleInfo findUserInfo(String role) {
+        return dao.findUserInfo(role);
     }
 
 

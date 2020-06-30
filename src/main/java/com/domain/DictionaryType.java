@@ -1,12 +1,17 @@
 package com.domain;
 
 
+
 import java.util.HashSet;
 import java.util.Set;
 
 public class DictionaryType {
     private Integer dataTypeId;
     private String dataTypeName;
+
+    public DictionaryType(Integer dataTypeId) {
+        this.dataTypeId = dataTypeId;
+    }
 
     public Set<DictionaryTypeInfo> getDictionaryTypeInfos() {
         return dictionaryTypeInfos;

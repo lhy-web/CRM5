@@ -19,6 +19,19 @@ public class User implements Serializable {
         this.role = role;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userLoginName='" + userLoginName + '\'' +
+                ", userPassWord='" + userPassWord + '\'' +
+                ", userTelphone='" + userTelphone + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
+
     public User(Integer userId, String userName, String userLoginName, String userPassWord, String userTelphone, String userEmail, String role) {
         this.userId = userId;
         this.userName = userName;

@@ -5,10 +5,95 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 <package name="Test" namespace="/" extends="struts-default">
-<!--    客户-->
     <action name="Test" class="TestAction">
         <result name="success">index.jsp</result>
     </action>
+    <!-- ==========角色模块 （菜单信息模块）============== -->
+    <!-- 获取所有 菜单信息 -->
+    <action name="menuInfoFindAll" class="menuInfoFindAllAction"> <!-- class="是spring里定义menuInfoFindAllAction" 的id-->
+        <result name="success">/form/addRoleInfo.jsp</result>
+    </action>
+    <!-- 获取所有 角色信息 -->
+    <action name="roleInfoFindAll" class="roleInfoFindAllAction"> <!-- class="是spring里定义roleInfoFindAllAction" 的id-->
+        <result name="success">/form/showRoleInfo.jsp</result>
+    </action>
+    <!-- 查看角色权限 -->
+    <action name="roleInfoDetail" class="roleInfoDetailAction"> <!-- class="是spring里定义roleInfoDetailAction" 的id-->
+        <result name="success">/form/showRoleInfoLimits.jsp</result>
+    </action>
+
+    <!-- 修改角色权限 -->
+    <action name="roleInfoUpdate" class="roleInfoUpdateAction"> <!-- class="是spring里定义roleInfoUpdateAction" 的id-->
+        <result name="success">/form/updateRoleInfo.jsp</result>
+    </action>
+
+    <!-- 添加角色 -->
+    <action name="addRoleInfo" class="com.action.AddRoleInfoAction"> <!-- class="是spring里定义roleInfoUpdateAction" 的id-->
+        <result name="success" type="redirect" >roleInfoFindAll.action</result>
+    </action>
+
+    <!-- ==========客户投诉模块============== -->
+    <!--    展示客户投诉列表-->
+    <action name="showComplainInfo" class="ComplainInfoFindAllAction">
+        <result name="success">form/showComplainInfo.jsp</result>
+    </action>
+    <!-- 查看客户投诉信息 -->
+    <action name="complainInfoDetail" class="complainInfoDetailAction">
+        <result name="success">form/showComplainInfoDetail.jsp</result>
+    </action>
+    <!--    更新投诉信息-->
+    <action name="updateComplainInfoForm" class="updateComplainInfoAction">
+        <result name="success" type="redirectAction">showComplainInfo</result>
+    </action>
+    <!--    添加投诉信息-->
+    <action name="addComplainInfo" class="addComplainInfoAction">
+        <result name="success" type="redirectAction">showComplainInfo</result>
+    </action>
+    <!--    删除单个投诉信息-->
+    <action name="delete" class="deleteComplainInfoAction">
+        <result name="success" type="redirectAction">showComplainInfo</result>
+    </action>
+    <!--    批量删除-->
+    <action name="deleteManyComplainInfo" class="deleteManyComplainInfoAction">
+        <result name="success" type="redirectAction">showComplainInfo</result>
+    </action>
+    <!--    条件查询-->
+    <action name="findComplainInfo" class="findComplainInfoAction">
+        <result name="success">form/showFindComplainInfo.jsp</result>
+    </action>
+
+    <!-- ==========数据字典模块============== -->
+
+    <action name="findAll" class="FindAllDAction">
+        <result name="success">form/showAll.jsp</result>
+    </action>
+
+    <action name="findDictionaryType" class="findDictionaryTypeAction">
+        <result name="success">form/show.jsp</result>
+    </action>
+    <action name="deleteDictionAryType" class="deleteDictionaryTypeAction">
+        <result name="success" type="redirectAction">findAll</result>
+    </action>
+    <action name="deleteDictionaryTypeInfo" class="deleteDictionaryTypeInfoAction">
+        <result name="success">form/show.jsp</result>
+    </action>
+    <action name="addDictionaryType" class="addDictionaryTypeAction">
+        <result name="success" type="redirectAction">findAll</result>
+    </action>
+    <action name="updateDictionaryType" class="updateDictionaryTypeAction">
+        <result name="success" type="redirectAction">findAll</result>
+    </action>
+    <action name="addDictionaryTypeInfo" class="addDictionaryTypeInfoAction">
+        <result name="success" type="redirectAction">findDictionaryType</result>
+    </action>
+    <action name="update" class="updateDictionaryTypeAction">
+        <result name="success" type="redirectAction">findAll</result>
+    </action>
+    <action name="updateDictionaryTypeInfo" class="updateDictionaryTypeInfoAction">
+        <result name="success" type="redirectAction" >findDictionaryType</result>
+    </action>
+
+    <!-- ==========客户信息============== -->
     <action name="findAllCustomer" class="FindAllAction" method="findAll">
         <result name="findAll">/form/CustomerInfo.jsp</result>
     </action>
@@ -36,9 +121,10 @@
     <action name="putCustomerInfoToExcel" class="PutCustomerInfoToExcel">
         <result name="put" type="chain">findAllCustomer</result>
     </action>
-<!--    User-->
+
+    <!-- ==========用户模块============== -->
     <action name="Login" class="userLogin">
-        <result name="LoginSuccess">/form/FunctionSelect.jsp</result>
+        <result name="LoginSuccess">/index.jsp</result>
         <result name="LoginFalse">/form/Login.jsp</result>
     </action>
     <action name="userFindAll" class="userInfo">
@@ -63,6 +149,33 @@
         <result name="updateSuccess" type="chain">userFindAll</result>
         <result name="updateFalse" type="chain">userFindAll</result>
     </action>
+
+    <!-- ==========联系人模块============== -->
+    <action name="findAllPerson" class="FindAllPAction" method="findAll">
+        <result name="findAll">form/showContactPerson.jsp</result>
+    </action>
+    <action name="saveContactPersonInfo" class="saveContactPersonInfo" >
+        <result name="addContactPerson">form/.jsp</result>
+    </action>
+    <action name="deletePerson" class="deletePerson">
+        <result name="delete" type="chain">findAllPerson</result>
+    </action>
+    <action name="manyDeletePerson" class="manyDeletePerson">
+        <result name="manyDeletePerson" type="chain">findAllPerson</result>
+    </action>
+    <action name="updatePerson" class="UpdateContactPersonInfoAction" method="updatePerson">
+        <result name="updateContactPersonPage" >form/updateContactPerson.jsp</result>
+        <result name="success" type="redirect">findAllPerson</result>
+    </action>
+    <action name="updateContactPerson" class="UpdateContactPersonInfoAction" method="updateContactPerson">
+        <result name="success" type="redirect">findAllPerson</result>
+    </action>
+    <action name="putContactPersonInfoExcel" class="putContactPersonInfoExcel">
+        <result name="put" type="chain">findAllPerson</result>
+    </action>
+
+    <!-- ==========任务管理模块============== -->
+
 </package>
 
 </struts>
